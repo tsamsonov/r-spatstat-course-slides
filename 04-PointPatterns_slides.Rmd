@@ -5,13 +5,14 @@ author: "Тимофей Самсонов"
 date: "`r Sys.Date()`"
 output:
   xaringan::moon_reader:
-    css: [default, "style.css"]
+    css: [default, "custom.css"]
     lib_dir: libs
     nature:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
       beforeInit: "macros.js"
+      ratio: 16:9
 ---
 
 ```{r setup, include=FALSE}
