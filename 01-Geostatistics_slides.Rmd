@@ -5,12 +5,13 @@ author: "Тимофей Самсонов"
 date: "`r Sys.Date()`"
 output:
   xaringan::moon_reader:
-    css: [default, "style.css"]
+    css: [default, "custom.css"]
     lib_dir: libs
     nature:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
+      ratio: 16:9
 ---
 
 ```{r setup, include=FALSE}
@@ -785,7 +786,7 @@ __Lagged scatterplot__ — вариант диаграммы рассеяния,
 ```{r, echo=FALSE, fig.height=3.5, dpi=300, fig.align='center'}
 options(scipen = 999)
 
-rainfall = read.table("../data/Rainfall.dat", header = TRUE)
+rainfall = read.table("../r-geo-course/data/Rainfall.dat", header = TRUE)
 sp::coordinates(rainfall) = ~x+y
 
 hscat(rain_24~1, data = rainfall, 1000 * c(0, 10, 20, 50, 100), pch = 19)
