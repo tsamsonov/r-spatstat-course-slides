@@ -4,7 +4,7 @@
     <title>Точечные процессы</title>
     <meta charset="utf-8" />
     <meta name="author" content="Тимофей Самсонов" />
-    <meta name="date" content="2022-04-22" />
+    <meta name="date" content="2022-05-14" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="custom.css" type="text/css" />
@@ -16,7 +16,7 @@ class: center, middle, inverse, title-slide
 # Точечные процессы
 ## Пространственная статистика
 ### Тимофей Самсонов
-### 2022-04-22
+### 2022-05-14
 
 ---
 
@@ -410,6 +410,34 @@ __Процесс Матерна I__:
 __Процесс Матерна II__:
 
 ![](images/matern2.png)
+
+---
+
+## Описание внутренней конфигурации
+
+.pull-left[
+
+### Свойства I порядка
+
+__Анализируется интенсивность точечного процесса__ — на основе плотности размещения:
+
+- анализ по учетным ячейкам (quadrat counts)
+
+- ядерное сглаживание — поверхность плотности пространственнного распределения (kernel density)
+
+]
+
+.pull-right[
+
+### Свойства II порядка
+
+__Анализируется пространственная зависимость__ — на основе расстояний между точками:
+
+- расстояние до ближайшего соседа (nearest neighbor analysis)
+
+- расстояние до K ближайших соседей (Ripley's K)
+
+]
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
