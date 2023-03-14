@@ -479,36 +479,36 @@ E\big[Z(x+h)-Z(x)\big]^2 = 2\gamma(h)
 
 - Чтобы модифицировать соответствующим образом уравнения простого кригинга, необходимо знать связь между ковариацией и вариограммой.
 
-<!-- --- -->
+---
 
-<!-- ## Положительная определенность -->
+## Положительная определенность
 
-<!-- Для того чтобы функция могла считаться ковариацией, необходимо, чтобы дисперсия, вычисленная на ее основе, была положительной: -->
+Для того чтобы функция могла считаться ковариацией, необходимо, чтобы дисперсия, вычисленная на ее основе, была положительной:
 
-<!-- $$Var \Bigg[\sum_{i=1}^N \lambda_i Z(x_i)\Bigg] = \sum_{i=1}^N \sum_{j=1}^N \lambda_i \lambda_j cov\big[Z(x_i), Z(x_j)\big] \\= \sum_{i=1}^N \sum_{j=1}^N \lambda_i \lambda_j C(x_j - x_i)$$ -->
-<!-- > Функция $C(h)$, для которой при любых значениях $N$, $x_i$ и $\lambda_i$ выражение $\sum_{i=1}^N \sum_{j=1}^N \lambda_i \lambda_j C(x_j - x_i)$ принимает неотрицательные значения, называется __положительно определенной__. -->
+$$Var \Bigg[\sum_{i=1}^N \lambda_i Z(x_i)\Bigg] = \sum_{i=1}^N \sum_{j=1}^N \lambda_i \lambda_j cov\big[Z(x_i), Z(x_j)\big] \\= \sum_{i=1}^N \sum_{j=1}^N \lambda_i \lambda_j C(x_j - x_i)$$
+> Функция $C(h)$, для которой при любых значениях $N$, $x_i$ и $\lambda_i$ выражение $\sum_{i=1}^N \sum_{j=1}^N \lambda_i \lambda_j C(x_j - x_i)$ принимает неотрицательные значения, называется __положительно определенной__.
 
-<!-- --- -->
+---
 
-<!-- ## Допустимые линейные комбинации -->
+## Допустимые линейные комбинации
 
-<!-- - Если функция отвечает внутренней гипотезе, нет гарантий, что ее ковариация существует и ограничена.  -->
+- Если функция отвечает внутренней гипотезе, нет гарантий, что ее ковариация существует и ограничена. 
 
-<!-- - В этом случае можно оценить дисперсию суммы случайных функций через дисперсию приращений, наложив дополнительное условие $\sum_{i=1}^N \lambda_i = 0$. В этом случае, учитывая что $\sum_{i=1}^N \lambda_i Z(x_0) = 0$,  имеем: -->
+- В этом случае можно оценить дисперсию суммы случайных функций через дисперсию приращений, наложив дополнительное условие $\sum_{i=1}^N \lambda_i = 0$. В этом случае, учитывая что $\sum_{i=1}^N \lambda_i Z(x_0) = 0$,  имеем:
 
-<!-- $$\sum_{i=1}^N \lambda_i Z(x_i) = \sum_{i=1}^N \lambda_i \big[Z(x_i) - Z(x_0)\big]$$ -->
-<!-- > Линейные комбинации, отвечающие условию $\sum_{i=1}^N \lambda_i = 0$, называются __допустимыми линейными комбинациями__. -->
+$$\sum_{i=1}^N \lambda_i Z(x_i) = \sum_{i=1}^N \lambda_i \big[Z(x_i) - Z(x_0)\big]$$
+> Линейные комбинации, отвечающие условию $\sum_{i=1}^N \lambda_i = 0$, называются __допустимыми линейными комбинациями__.
 
-<!-- --- -->
+---
 
-<!-- ## Условная положительная определенность -->
+## Условная положительная определенность
 
-<!-- Дисперсия _допустимой линейной комбинации_ может быть выражена через вариограмму: -->
+Дисперсия _допустимой линейной комбинации_ может быть выражена через вариограмму:
 
-<!-- $$Var \Bigg[\sum_{i=1}^N \lambda_i Z(x_i)\Bigg] = - \sum_{i=1}^N \sum_{j=1}^N \lambda_i \lambda_j \gamma(x_j - x_i)$$ -->
-<!-- Функция $G(h)$, для которой при условии и $\sum_{i=1}^N \lambda_i = 0$ выражение $\sum_{i=1}^N \sum_{j=1}^N \lambda_i \lambda_j G(x_j - x_i)$ принимает неотрицательные значения, называется __условно положительно определенной__. -->
+$$Var \Bigg[\sum_{i=1}^N \lambda_i Z(x_i)\Bigg] = - \sum_{i=1}^N \sum_{j=1}^N \lambda_i \lambda_j \gamma(x_j - x_i)$$
+Функция $G(h)$, для которой при условии и $\sum_{i=1}^N \lambda_i = 0$ выражение $\sum_{i=1}^N \sum_{j=1}^N \lambda_i \lambda_j G(x_j - x_i)$ принимает неотрицательные значения, называется __условно положительно определенной__.
 
-<!-- > $-\gamma(h)$ — условно положительно определенная ф. -->
+> $-\gamma(h)$ — условно положительно определенная ф.
 
 ---
 
@@ -516,66 +516,48 @@ E\big[Z(x+h)-Z(x)\big]^2 = 2\gamma(h)
 
 Рассмотрим ковариацию двух линейных комбинаций с.ф.:
 
-$$Cov \Bigg[\sum_{\alpha=1}^N \lambda_{\alpha} Z(x_{\alpha}), \sum_{\beta=1}^M \mu_{\beta} Z(x_{\beta}) \Bigg] = \sum_{\alpha=1}^N \sum_{\beta=1}^M \lambda_{\alpha} \mu_{\beta} C(x_{\beta} - x_{\alpha})$$
-
+$$Cov \Bigg[\sum_{i=1}^N \lambda_i Z(x_i), \sum_{j=1}^M \mu_j Z(x_j) \Bigg] = \sum_{i=1}^N \sum_{j=1}^M \lambda_i \mu_j C(x_j - x_i)$$
 Используя правило $Cov[X + \alpha, Y + \beta] = Cov[X, Y]$, введем условное начало координат:
 
-$$\sum_{\alpha=1}^N \sum_{\beta=1}^M \lambda_{\alpha} \mu_{\beta} C(x_{\beta} - x_{\alpha}) =\\
-=\sum_{\alpha=1}^N \sum_{\beta=1}^M \lambda_{\alpha} \mu_{\beta} Cov \big[Z(x_{\alpha}) - Z(x_0), Z(x_{\beta}) - Z(x_0)\big]$$
+$$\sum_{i=1}^N \sum_{j=1}^M \lambda_i \mu_j C(x_j - x_i) =\\
+=\sum_{i=1}^N \sum_{j=1}^M \lambda_i \mu_j Cov \big[Z(x_i) - Z(x_0), Z(x_j) - Z(x_0)\big]$$
 ---
 
 ### Переход от ковариации к вариограмме
 
 Распишем ковариацию через математические ожидания, учитывая, что, согласно гипотезе, $E\big[Z(x+h)-Z(x)\big] = 0$:
 
-$$Cov \big[Z(x_{\alpha}) - Z(x_0), Z(x_{\beta}) - Z(x_0)\big] =\\
-= E\big[Z_{\alpha} - Z_0\big]\big[Z_{\beta} - Z_0\big] - E\big[Z_{\alpha} - Z_0\big] E\big[Z_{\beta} - Z_0\big] = \\
-= E\big[Z_{\alpha} - Z_0\big]\big[Z_{\beta} - Z_0\big]$$
+$$Cov \big[Z(x_i) - Z(x_0), Z(x_j) - Z(x_0)\big] =\\
+= E\big[Z_i - Z_0\big]\big[Z_j - Z_0\big] - E\big[Z_i - Z_0\big] E\big[Z_j - Z_0\big] = \\
+= E\big[Z_i - Z_0\big]\big[Z_j - Z_0\big]$$
 
 Обратим внимание, что произведение приращений можно выразить через квадраты приращений:
 
-$$\color{blue}{(Z_{\beta} - Z_{\alpha})^2} = \big[(Z_{\beta} - Z_0) - (Z_{\alpha} - Z_0)\big]^2 = \\ = \color{blue}{(Z_{\alpha} - Z_0)^2} - 2\color{red}{(Z_{\alpha} - Z_0)(Z_{\beta} - Z_0)} + \color{blue}{(Z_{\beta} - Z_0)^2}$$
+$$\color{blue}{(Z_j - Z_i)^2} = \big[(Z_j - Z_0) - (Z_i - Z_0)\big]^2 = \\ = \color{blue}{(Z_i - Z_0)^2} - 2\color{red}{(Z_i - Z_0)(Z_j - Z_0)} + \color{blue}{(Z_j - Z_0)^2}$$
 ---
 
 ### Переход от ковариации к вариограмме
 
 Имеем:
 
-$$(Z_{\alpha} - Z_0)(Z_{\beta} - Z_0) = \frac{1}{2} \Big[(Z_{\alpha} - Z_0)^2 + (Z_{\beta} - Z_0)^2 - (Z_{\beta} - Z_{\alpha})^2\Big]$$
-
+$$ (Z_i - Z_0)(Z_j - Z_0) = \frac{1}{2} \Big[(Z_i - Z_0)^2 + (Z_j - Z_0)^2 - (Z_j - Z_i)^2\Big]$$
 Учитывая, что $E\big[Z(x+h)-Z(x)\big]^2 = 2\gamma(h)$, подставим это выражение в формулу вычисления ковариации:
 
-$$Cov \big[Z(x_{\alpha}) - Z(x_0), Z(x_{\beta}) - Z(x_0)\big] = E\big[Z_{\alpha} - Z_0\big]\big[Z_{\beta} - Z_0\big] = \\
-= \frac{1}{2} E \Big[(Z_{\alpha} - Z_0)^2 + (Z_{\beta} - Z_0)^2 - (Z_{\beta} - Z_{\alpha})^2\Big] = \\
-= \gamma(x_{\alpha} - x_0) + \gamma(x_{\beta} - x_0) - \gamma(x_{\beta} - x_{\alpha})$$
-
+$$Cov \big[Z(x_i) - Z(x_0), Z(x_j) - Z(x_0)\big] = E\big[Z_i - Z_0\big]\big[Z_j - Z_0\big] = \\
+= \frac{1}{2} E \Big[(Z_i - Z_0)^2 + (Z_j - Z_0)^2 - (Z_j - Z_i)^2\Big] = \\
+= \gamma(x_i - x_0) + \gamma(x_j - x_0) - \gamma(x_j - x_i)$$
 ---
 
 ### Переход от ковариации к вариограмме
 
 Подставим полученное выражение в двойную сумму:
 
-$$\sum_{\alpha=1}^N \sum_{\beta=1}^M \lambda_{\alpha} \mu_{\beta} Cov \big[Z(x_{\alpha}) - Z(x_0), Z(x_{\beta}) - Z(x_0)\big] = \\ 
-= \sum_{\alpha=1}^N \sum_{\beta=1}^M \lambda_{\alpha} \mu_{\beta} \big[\gamma(x_{\alpha} - x_0) + \gamma(x_{\beta} - x_0) - \gamma(x_{\beta} - x_{\alpha})\big] = \\
-= - \sum_{\alpha=1}^N \sum_{\beta=1}^M \lambda_{\alpha} \mu_{\beta} \gamma(x_{\beta} - x_{\alpha}),$$
+$$\sum_{i=1}^N \sum_{j=1}^M \lambda_i \mu_j Cov \big[Z(x_i) - Z(x_0), Z(x_j) - Z(x_0)\big] = \\ 
+= \sum_{i=1}^N \sum_{j=1}^M \lambda_i \mu_j \big[\gamma(x_i - x_0) + \gamma(x_j - x_0) - \gamma(x_j - x_i)\big] = \\
+= - \sum_{i=1}^N \sum_{j=1}^M \lambda_i \mu_j \gamma(x_j - x_i),$$
 
-- $\sum_{\alpha=1}^N \sum_{\beta=1}^M \lambda_{\alpha} \mu_{\beta} \gamma(x_{\alpha} - x_0) = \color{blue}{\underbrace{\sum_{\beta=1}^M \mu_{\beta}}_0} \sum_{\alpha=1}^N \lambda_{\alpha} \gamma(x_{\alpha} - x_0) = 0$
-- $\sum_{\alpha=1}^N \sum_{\beta=1}^M \lambda_{\alpha} \mu_{\beta} \gamma(x_{\beta} - x_0) = \color{red}{\underbrace{\sum_{\alpha=1}^N \lambda_{\alpha}}_0} \sum_{\beta=1}^M \mu_{\beta} \gamma(x_{\beta} - x_0) = 0$
-
----
-
-## Переход от ковариации к вариограмме
-
-В линейных комбинациях приращений сумма коэффициентов всегда равна $0$, поскольку это справедливо для каждого приращения. 
-
-
-
-Для $\alpha = 1$:
-
-$$\lambda_1 (x_1 - x_0) = \lambda_1 x_1 - \lambda_1 x_0 = \sum_{k=0}^1 \rho_k x_k,$$
-где $\rho_0 = -\lambda_1$, $\rho_1 = \lambda_1$. Следовательно:
-
-$$\sum_{k=0}^1 \rho_k = 0$$
+- $\sum_{i=1}^N \sum_{j=1}^M \lambda_i \mu_j \gamma(x_i - x_0) = \sum_{j=1}^M \mu_j \sum_{i=1}^N \lambda_i \gamma(x_i - x_0) = 0$
+- $\sum_{i=1}^N \sum_{j=1}^M \lambda_i \mu_j \gamma(x_j - x_0) = \sum_{i=1}^N \lambda_i \sum_{j=1}^M \mu_i \gamma(x_j - x_0) = 0$
 
 ---
 
@@ -583,13 +565,13 @@ $$\sum_{k=0}^1 \rho_k = 0$$
 
 Стационарный случай:
 
-$$Cov \Bigg[\sum_{\alpha=1}^N \lambda_{\alpha} Z(x_{\alpha}), \sum_{\beta=1}^M \mu_{\beta} Z(x_{\beta}) \Bigg] = \sum_{\alpha=1}^N \sum_{\beta=1}^M \lambda_{\alpha} \mu_{\beta} C(x_{\beta} - x_{\alpha})$$
+$$Cov \Bigg[\sum_{i=1}^N \lambda_i Z(x_i), \sum_{j=1}^M \mu_j Z(x_j) \Bigg] = \sum_{i=1}^N \sum_{j=1}^M \lambda_i \mu_j C(x_j - x_i)$$
 
 Внутренняя гипотеза:
 
-$$Cov \Bigg[\sum_{\alpha=1}^N \lambda_{\alpha} Z(x_{\alpha}), \sum_{\beta=1}^M \mu_{\beta} Z(x_{\beta}) \Bigg] = - \sum_{\alpha=1}^N \sum_{\beta=1}^M \lambda_{\alpha} \mu_{\beta} \gamma(x_{\beta} - x_{\alpha})$$
+$$Cov \Bigg[\sum_{i=1}^N \lambda_i Z(x_i), \sum_{j=1}^M \mu_j Z(x_j) \Bigg] = - \sum_{i=1}^N \sum_{j=1}^M \lambda_i \mu_j \gamma(x_j - x_i)$$
 
-> При соблюдении внутренней гипотезы в уравнениях кригинга можно принять $\sigma_{\alpha \beta} = -\gamma_{\alpha \beta}$
+> При соблюдении внутренней гипотезы в уравнениях кригинга можно принять $\sigma_{ij} = -\gamma_{ij}$
 
 ---
 
