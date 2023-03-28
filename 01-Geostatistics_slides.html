@@ -4,7 +4,7 @@
     <title>Геостатистика</title>
     <meta charset="utf-8" />
     <meta name="author" content="Тимофей Самсонов" />
-    <meta name="date" content="2023-03-14" />
+    <meta name="date" content="2023-03-21" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="custom.css" type="text/css" />
@@ -23,7 +23,7 @@ class: center, middle, inverse, title-slide
 ### Тимофей Самсонов
 ]
 .date[
-### 2023-03-14
+### 2023-03-21
 ]
 
 ---
@@ -825,12 +825,6 @@ __Lagged scatterplot__ — вариант диаграммы рассеяния,
 
 Эмпирическая вариограмма рассчитывается путем разбения вариограммного облака на интервалы расстояний — __лаги__ — и подсчета среднего значения `\(\gamma\)` в каждом лаге:
   
-
-```
-## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-## ℹ Please use `linewidth` instead.
-```
-
 ![](01-Geostatistics_slides_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
 
 ---
@@ -846,7 +840,7 @@ __Lagged scatterplot__ — вариант диаграммы рассеяния,
 
 ## Эмпирическая вариограмма
 
-Поскольку вариограмма есть _дисперсия разности значений_, ее рост при увеличении расстояния можно оценить также по увеличению размера «ящика» на диаграмме размаха `\(\sqrt\gamma\)`:
+Поскольку вариограмма есть _дисперсия разности значений_, ее рост можно оценить также по увеличению размера «ящика» на диаграмме размаха `\(\sqrt\gamma\)`:
 
 ![](01-Geostatistics_slides_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
 
@@ -883,7 +877,7 @@ __В уравнениях кригинга нельзя использовать
 
 `$$\gamma (\mathbf{h}) = \gamma(\mathbf{x}, \mathbf{x + h}) = E\big[Z(x + h)-Z(x)\big]^2$$`
 
-Исходя из определения вариограммы, можно вывести ряд свойств, которым должна удовлетворять её модель:
+Исходя из определения вариограммы, можно вывести ряд обязательных свойств модели:
 
 - Вариограмма симметрична:
 
@@ -1051,42 +1045,66 @@ __Приближение__ (_fitting_) модели вариограммы пр�
 
 ## Обычный кригинг
 
+Визуализируем найденную вариограмму:
+![](01-Geostatistics_slides_files/figure-html/unnamed-chunk-20-1.png)&lt;!-- --&gt;
+
+---
+
+## Обычный кригинг
+
+Визуализируем найденную вариокарту:
+
+![](01-Geostatistics_slides_files/figure-html/unnamed-chunk-21-1.png)&lt;!-- --&gt;
+
+---
+
+## Обычный кригинг
+
 Проинтерполируем, используя приближенную модель вариограммы:
 
 ```r
-tempkriged = krige(rain_24~1, rainfall, pts.grid, model = varmd)
+(px_grid = krige(rain_24~1, rainfall, px_grid, model = varmd))
 ```
 
 ```
 ## [using ordinary kriging]
 ```
 
-```r
-head(tempkriged@data)
 ```
-
-```
-##   var1.pred var1.var
-## 1  18.49914 90.81593
-## 2  18.77921 79.37729
-## 3  19.27101 69.28762
-## 4  20.38205 61.60475
-## 5  22.30610 55.95390
-## 6  23.78023 52.50907
-```
-
-```r
-temps = SpatialPixelsDataFrame(tempkriged, data = tempkriged@data['var1.pred']) %&gt;% raster()
-vars = SpatialPixelsDataFrame(tempkriged, data = tempkriged@data['var1.var']) %&gt;% raster()
+## stars object with 2 dimensions and 2 attributes
+## attribute(s):
+##                  Min.   1st Qu.   Median     Mean  3rd Qu.      Max.
+## var1.pred  -0.4091735  7.707571 18.83325 21.50978 32.07393  67.26636
+## var1.var   30.9929191 45.435980 52.71968 58.67491 65.48474 186.22488
+## dimension(s):
+##   from  to  offset delta                refsys x/y
+## x    1 213  332239  2000 WGS 84 / UTM zone 32N [x]
+## y    1  99 5121556 -2000 WGS 84 / UTM zone 32N [y]
 ```
 
 ---
 
-## Оценка и дисперсия кригинга
+## Оценка кригинга
 
-![](01-Geostatistics_slides_files/figure-html/unnamed-chunk-21-1.png)&lt;!-- --&gt;![](01-Geostatistics_slides_files/figure-html/unnamed-chunk-21-2.png)&lt;!-- --&gt;
+![](01-Geostatistics_slides_files/figure-html/unnamed-chunk-23-1.png)&lt;!-- --&gt;
+
+---
+
+## Дисперсия кригинга
+
+![](01-Geostatistics_slides_files/figure-html/unnamed-chunk-24-1.png)&lt;!-- --&gt;
+
 
 Дисперсия кригинга высока там, где мало данных
+
+---
+
+## Среднеквадратическое отклонение кригинга
+
+![](01-Geostatistics_slides_files/figure-html/unnamed-chunk-25-1.png)&lt;!-- --&gt;
+
+
+Для удобства интерпретации можно взять корень из дисперсии
 
 ---
 
@@ -1152,7 +1170,7 @@ head(cvl %&gt;% st_set_geometry(NULL), 10)
 
 Cтандартизированные ошибки в стационарном случае должны быть распределены нормально:
 
-![](01-Geostatistics_slides_files/figure-html/unnamed-chunk-23-1.png)&lt;!-- --&gt;
+![](01-Geostatistics_slides_files/figure-html/unnamed-chunk-27-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -1160,7 +1178,7 @@ Cтандартизированные ошибки в стационарном �
 
 Ошибки должны быть независимы от значений:
 
-![](01-Geostatistics_slides_files/figure-html/unnamed-chunk-24-1.png)&lt;!-- --&gt;
+![](01-Geostatistics_slides_files/figure-html/unnamed-chunk-28-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -1168,14 +1186,14 @@ Cтандартизированные ошибки в стационарном �
 
 Облако рассеяния оценки относительно истинных значений должно быть компактным:
 
-![](01-Geostatistics_slides_files/figure-html/unnamed-chunk-25-1.png)&lt;!-- --&gt;
+![](01-Geostatistics_slides_files/figure-html/unnamed-chunk-29-1.png)&lt;!-- --&gt;
 
 ---
 
 ## Кросс-валидация
 
 Пространственная картина стандартизированных ошибок должна быть гомогенной:
-![](01-Geostatistics_slides_files/figure-html/unnamed-chunk-26-1.png)&lt;!-- --&gt;
+![](01-Geostatistics_slides_files/figure-html/unnamed-chunk-30-1.png)&lt;!-- --&gt;
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
