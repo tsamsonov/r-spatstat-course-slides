@@ -137,14 +137,16 @@ realest = read_delim(url('https://www.jefftk.com/apartment_prices/apts-154263738
   st_as_sf(coords = c('lon', 'lat'), crs = 4326) %>%
   st_transform(3395)
 
+samples = realest %>% dplyr::sample_n(1000) %>% as('Spatial')
+
 tmap_mode('plot')
-tm_shape(realest) +
+tm_shape(samples) +
   tm_bubbles(col = 'price',
              size = 'rooms',
              style = 'fixed',
              breaks = c(0, 1000, 2000, 3000, 4000, 5000, 10000, max(realest$price)),
-             scale = 1,
-             palette = colorRampPalette(c('steelblue4', 'orange', 'darkred'))(7),
+             scale = 1.5,
+             palette = colorRampPalette(c('white', 'darkred'))(7),
              alpha = 0.8) +
   tm_view(symbol.size.fixed = TRUE)
 ```
@@ -158,10 +160,11 @@ samples = realest %>% dplyr::sample_n(1000) %>% as('Spatial')
 
 gwr_res = GWmodel::gwr.basic(price ~ rooms, data = samples, bw = 1000, kernel = 'gaussian')
 
+tmap_mode('plot')
 tm_shape(gwr_res$SDF) +
   tm_bubbles(col = 'rooms', # это не количество комнат, а коэффициент регрессии
              style = 'quantile',
-             scale = 0.3,
+             scale = 0.7,
              palette = 'Reds',
              alpha = 1) +
   tm_view(symbol.size.fixed = TRUE)
