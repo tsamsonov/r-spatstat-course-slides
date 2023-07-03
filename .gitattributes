@@ -1,0 +1,10 @@
+*.css     linguist-vendored
+*.js      linguist-vendored
+*.tex     linguist-vendored
+*.bib     linguist-vendored
+*.sh      linguist-vendored
+*.aux     linguist-vendored
+Makefile  linguist-vendored
+docs/* linguist-vendored
+old/* linguist-vendored
+*.Rmd linguist-detectable
