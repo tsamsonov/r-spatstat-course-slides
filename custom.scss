@@ -69,3 +69,15 @@ $presentation-heading-color: #383d3d !default;
 .reveal .code-large code {
   font-size: 1.5em;
 }
+
+.MathJax {
+    font-size: 120% !important;
+}
+
+.math.inline .MathJax  {
+  font-size: 120% !important;
+}
+
+.math.display .MathJax  {
+  font-size: 120% !important;
+}
