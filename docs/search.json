@@ -662,7 +662,7 @@
     "href": "02_Geostatistics.html#дисперсия-простого-кригинга-2",
     "title": "Геостатистика",
     "section": "Дисперсия простого кригинга",
-    "text": "Дисперсия простого кригинга\nЗаменим \\(\\sum_{i}\\sum_{j} \\lambda_i \\lambda_j \\sigma_{ij}\\) на \\(\\sum_{i}\\lambda_i\\sigma_{i0}\\) в выражении для ско:\n\\[\n\\operatorname{Var}[Z^* - Z_0] = \\color{red}{\\sum_{i}\\sum_{j} \\lambda_i \\lambda_j \\sigma_{ij}} - 2 \\sum_{} \\lambda_i \\sigma_{i0} + \\sigma_{00} =\\\\\n\\sum_{i}\\lambda_i\\sigma_{i0} - 2 \\sum_{} \\lambda_i \\sigma_{i0} + \\sigma_{00}\n\\]\nОтсюда получаем выражение для дисперсии (ошибки) простого кригинга:\n\\[\n\\color{red}{\\boxed{\\color{blue}{\\sigma_{SK} = \\operatorname{Var}[Z^* - Z_0] = \\sigma_{00} - \\sum_{i}\\lambda_i\\sigma_{i0}}}}\n\\]"
+    "text": "Дисперсия простого кригинга\nЗаменим \\(\\sum_{i}\\sum_{j} \\lambda_i \\lambda_j \\sigma_{ij}\\) на \\(\\sum_{i}\\lambda_i\\sigma_{i0}\\) в выражении для СКО:\n\\[\n\\operatorname{Var}[Z^* - Z_0] = \\color{red}{\\sum_{i}\\sum_{j} \\lambda_i \\lambda_j \\sigma_{ij}} - 2 \\sum_{} \\lambda_i \\sigma_{i0} + \\sigma_{00} =\\\\\n\\sum_{i}\\lambda_i\\sigma_{i0} - 2 \\sum_{} \\lambda_i \\sigma_{i0} + \\sigma_{00}\n\\]\nОтсюда получаем выражение для дисперсии (ошибки) простого кригинга:\n\\[\n\\color{red}{\\boxed{\\color{blue}{\\sigma_{SK} = \\operatorname{Var}[Z^* - Z_0] = \\sigma_{00} - \\sum_{i}\\lambda_i\\sigma_{i0}}}}\n\\]"
   },
   {
     "objectID": "02_Geostatistics.html#библиография",
@@ -670,5 +670,187 @@
     "title": "Геостатистика",
     "section": "Библиография",
     "text": "Библиография\n\n\n\nСамсонов Т. Е. Пространственная статистика: курс лекций"
+  },
+  {
+    "objectID": "02_Geostatistics.html#стационарность-приращений",
+    "href": "02_Geostatistics.html#стационарность-приращений",
+    "title": "Геостатистика",
+    "section": "Стационарность приращений",
+    "text": "Стационарность приращений\nСтационарность второго порядка требует знания математического ожидания для вычисления ковариации. В ряде случаев оценить математическое ожидание оказывается невозможно (оно может не существовать) или же оно действительно оказывается непостоянным.\nТогда пользуются еще более мягкой формой стационарности — стационарностью приращений, при которой стационарной предполагается не сама с.ф. \\(Z(x)\\), а производная от нее функция:\n\\[Y_h(x) = Z(x+h)-Z(x)\\]\nФункция \\(Z(x)\\), обладающая таким свойством, называется подчиняющейся внутренней гипотезе."
+  },
+  {
+    "objectID": "02_Geostatistics.html#стационарность-приращений-1",
+    "href": "02_Geostatistics.html#стационарность-приращений-1",
+    "title": "Геостатистика",
+    "section": "Стационарность приращений",
+    "text": "Стационарность приращений\nУ функции \\(Y_h(x) = Z(x+h)-Z(x)\\) должны существовать математическое ожидание и дисперсия приращений:\n\\[\n\\begin{cases}\n\\operatorname E[Z(x+h)-Z(x)] = \\langle a,h \\rangle \\\\\n\\operatorname {Var}[Z(x+h)-Z(x)] = 2\\gamma(h)\n\\end{cases}\n\\]\n\n\\(\\langle a,h \\rangle\\) обозначает линейный тренд \\(a\\) при заданном векторе \\(h\\) (математическое ожидание разности значений), который выражается через скалярное произведение: \\(\\langle a,h \\rangle = \\sum_i a_i h_i\\)\n\\(\\gamma(h)\\) — дисперсия приращений, называемая вариограммой"
+  },
+  {
+    "objectID": "02_Geostatistics.html#стационарность-приращений-2",
+    "href": "02_Geostatistics.html#стационарность-приращений-2",
+    "title": "Геостатистика",
+    "section": "Стационарность приращений",
+    "text": "Стационарность приращений\n\\[\n\\begin{cases}\n\\operatorname E[Z(x+h)-Z(x)] = \\langle a,h \\rangle \\\\\n\\operatorname {Var}[Z(x+h)-Z(x)] = 2\\gamma(h)\n\\end{cases}\n\\]\nЕсли процесс подчиняется гипотезе стационарности второго рода \\(\\operatorname E[Z(x)] = m\\), то \\(\\operatorname E[Z(x+h)-Z(x)] = \\operatorname E[Y_h(x)] = 0\\) и вариограмму можно выразить следующим образом:\n\\[\n2\\gamma(h) = \\operatorname {Var}[Z(x+h)-Z(x)] = \\operatorname {Var}[Y_h(x)] \\\\= \\operatorname E\\big[Y_h(x)\\big]^2 - \\Big(\\operatorname E\\big[Y_h(x)\\big]\\Big)^2 \\\\= \\operatorname E\\big[Y_h(x)\\big]^2 = \\operatorname E\\big[Z(x+h)-Z(x)\\big]^2\n\\]"
+  },
+  {
+    "objectID": "02_Geostatistics.html#стационарность-приращений-3",
+    "href": "02_Geostatistics.html#стационарность-приращений-3",
+    "title": "Геостатистика",
+    "section": "Стационарность приращений",
+    "text": "Стационарность приращений\nТаким образом, наиболее распространенная в геостатистике гипотеза подчиняется следующим условиям:\n\\[\n\\begin{cases}\n\\operatorname E\\big[Z(x)\\big] = m\\\\\n\\operatorname E\\big[Z(x+h)-Z(x)\\big] = 0 \\\\\n\\operatorname E\\big[Z(x+h)-Z(x)\\big]^2 = 2\\gamma(h)\n\\end{cases}\n\\]\n\nЭти условия позволяют избавиться от необходимости знания среднего значения и дисперсии случайной функции и использовать для вычислений вариограмму.\nЧтобы модифицировать соответствующим образом уравнения простого кригинга, необходимо знать связь между ковариацией и вариограммой."
+  },
+  {
+    "objectID": "02_Geostatistics.html#переход-от-ковариации-к-вариограмме-4",
+    "href": "02_Geostatistics.html#переход-от-ковариации-к-вариограмме-4",
+    "title": "Геостатистика",
+    "section": "Переход от ковариации к вариограмме",
+    "text": "Переход от ковариации к вариограмме\nПодставим полученное выражение в двойную сумму:\n\\[\n\\sum_{\\alpha=1}^N \\sum_{\\beta=1}^M \\lambda_{\\alpha} \\mu_{\\beta} \\operatorname {Cov} \\big[Z(x_{\\alpha}) - Z(x_0), Z(x_{\\beta}) - Z(x_0)\\big] = \\\\\n= - \\sum_{\\alpha=1}^N \\sum_{\\beta=1}^M \\lambda_{\\alpha} \\mu_{\\beta} \\gamma(x_{\\beta} - x_{\\alpha}),\n\\]\n\n\\(\\sum_{\\alpha=1}^N \\sum_{\\beta=1}^M \\lambda_{\\alpha} \\mu_{\\beta} \\gamma(x_{\\alpha} - x_0) = \\color{blue}{\\underbrace{\\sum_{\\beta=1}^M \\mu_{\\beta}}_0} \\sum_{\\alpha=1}^N \\lambda_{\\alpha} \\gamma(x_{\\alpha} - x_0) = 0\\)\n\\(\\sum_{\\alpha=1}^N \\sum_{\\beta=1}^M \\lambda_{\\alpha} \\mu_{\\beta} \\gamma(x_{\\beta} - x_0) = \\color{red}{\\underbrace{\\sum_{\\alpha=1}^N \\lambda_{\\alpha}}_0} \\sum_{\\beta=1}^M \\mu_{\\beta} \\gamma(x_{\\beta} - x_0) = 0\\)"
+  },
+  {
+    "objectID": "02_Geostatistics.html#переход-от-ковариации-к-вариограмме",
+    "href": "02_Geostatistics.html#переход-от-ковариации-к-вариограмме",
+    "title": "Геостатистика",
+    "section": "Переход от ковариации к вариограмме",
+    "text": "Переход от ковариации к вариограмме\nРассмотрим ковариацию двух линейных комбинаций с.ф.:\n\\[\n\\operatorname {Cov} \\Bigg[\\sum_{\\alpha=1}^N \\lambda_{\\alpha} Z(x_{\\alpha}), \\sum_{\\beta=1}^M \\mu_{\\beta} Z(x_{\\beta}) \\Bigg] = \\sum_{\\alpha=1}^N \\sum_{\\beta=1}^M \\lambda_{\\alpha} \\mu_{\\beta} \\operatorname C(x_{\\beta} - x_{\\alpha})\n\\]\nИспользуя правило \\(\\operatorname {Cov}[X + \\alpha, Y + \\beta] = \\operatorname {Cov}[X, Y]\\), введем условное начало координат:\n\\[\n\\sum_{\\alpha=1}^N \\sum_{\\beta=1}^M \\lambda_{\\alpha} \\mu_{\\beta} \\operatorname C(x_{\\beta} - x_{\\alpha}) =\\\\\n=\\sum_{\\alpha=1}^N \\sum_{\\beta=1}^M \\lambda_{\\alpha} \\mu_{\\beta} \\operatorname {Cov} \\big[Z(x_{\\alpha}) - Z(x_0), Z(x_{\\beta}) - Z(x_0)\\big]\n\\]"
+  },
+  {
+    "objectID": "02_Geostatistics.html#переход-от-ковариации-к-вариограмме-1",
+    "href": "02_Geostatistics.html#переход-от-ковариации-к-вариограмме-1",
+    "title": "Геостатистика",
+    "section": "Переход от ковариации к вариограмме",
+    "text": "Переход от ковариации к вариограмме\nРаспишем ковариацию через математические ожидания, учитывая, что, согласно гипотезе, \\(\\operatorname E\\big[Z(x+h)-Z(x)\\big] = 0\\):\n\\[\n\\operatorname {Cov} \\big[Z(x_{\\alpha}) - Z(x_0), Z(x_{\\beta}) - Z(x_0)\\big] =\\\\\n= \\operatorname E\\big[Z_{\\alpha} - Z_0\\big]\\big[Z_{\\beta} - Z_0\\big] - \\operatorname E\\big[Z_{\\alpha} - Z_0\\big] \\operatorname E\\big[Z_{\\beta} - Z_0\\big] = \\\\\n= \\operatorname E\\big[Z_{\\alpha} - Z_0\\big]\\big[Z_{\\beta} - Z_0\\big]\n\\]\nОбратим внимание, что произведение приращений можно выразить через квадраты приращений:\n\\[\n\\color{blue}{(Z_{\\beta} - Z_{\\alpha})^2} = \\big[(Z_{\\beta} - Z_0) - (Z_{\\alpha} - Z_0)\\big]^2 = \\\\ = \\color{blue}{(Z_{\\alpha} - Z_0)^2} - 2\\color{red}{(Z_{\\alpha} - Z_0)(Z_{\\beta} - Z_0)} + \\color{blue}{(Z_{\\beta} - Z_0)^2}\n\\]"
+  },
+  {
+    "objectID": "02_Geostatistics.html#переход-от-ковариации-к-вариограмме-2",
+    "href": "02_Geostatistics.html#переход-от-ковариации-к-вариограмме-2",
+    "title": "Геостатистика",
+    "section": "Переход от ковариации к вариограмме",
+    "text": "Переход от ковариации к вариограмме\nИмеем:\n\\[\n(Z_{\\alpha} - Z_0)(Z_{\\beta} - Z_0) = \\frac{1}{2} \\Big[(Z_{\\alpha} - Z_0)^2 + (Z_{\\beta} - Z_0)^2 - (Z_{\\beta} - Z_{\\alpha})^2\\Big]\n\\]\nУчитывая, что \\(\\operatorname E\\big[Z(x+h)-Z(x)\\big]^2 = 2\\gamma(h)\\), подставим это выражение в формулу вычисления ковариации:\n\\[\n\\operatorname {Cov} \\big[Z(x_{\\alpha}) - Z(x_0), Z(x_{\\beta}) - Z(x_0)\\big] = \\operatorname E\\big[Z_{\\alpha} - Z_0\\big]\\big[Z_{\\beta} - Z_0\\big] = \\\\\n= \\frac{1}{2} \\operatorname E \\Big[(Z_{\\alpha} - Z_0)^2 + (Z_{\\beta} - Z_0)^2 - (Z_{\\beta} - Z_{\\alpha})^2\\Big] = \\\\\n= \\gamma(x_{\\alpha} - x_0) + \\gamma(x_{\\beta} - x_0) - \\gamma(x_{\\beta} - x_{\\alpha})\n\\]"
+  },
+  {
+    "objectID": "02_Geostatistics.html#переход-от-ковариации-к-вариограмме-3",
+    "href": "02_Geostatistics.html#переход-от-ковариации-к-вариограмме-3",
+    "title": "Геостатистика",
+    "section": "Переход от ковариации к вариограмме",
+    "text": "Переход от ковариации к вариограмме\nПодставим полученное выражение в двойную сумму:\n\\[\n\\sum_{\\alpha=1}^N \\sum_{\\beta=1}^M \\lambda_{\\alpha} \\mu_{\\beta} \\operatorname {Cov} \\big[Z(x_{\\alpha}) - Z(x_0), Z(x_{\\beta}) - Z(x_0)\\big] = \\\\\n= \\sum_{\\alpha=1}^N \\sum_{\\beta=1}^M \\lambda_{\\alpha} \\mu_{\\beta} \\big[\\gamma(x_{\\alpha} - x_0) + \\gamma(x_{\\beta} - x_0) - \\gamma(x_{\\beta} - x_{\\alpha})\\big] = \\\\\n= \\color{blue}{\\underbrace{\\sum_{\\alpha=1}^N \\sum_{\\beta=1}^M \\lambda_{\\alpha} \\mu_{\\beta} \\gamma(x_{\\alpha} - x_0)}_0} + \\color{red}{\\underbrace{\\sum_{\\alpha=1}^N \\sum_{\\beta=1}^M \\lambda_{\\alpha} \\mu_{\\beta} \\gamma(x_{\\beta} - x_0)}_0} - \\sum_{\\alpha=1}^N \\sum_{\\beta=1}^M \\lambda_{\\alpha} \\mu_{\\beta} \\gamma(x_{\\beta} - x_{\\alpha}) = \\\\\n= - \\sum_{\\alpha=1}^N \\sum_{\\beta=1}^M \\lambda_{\\alpha} \\mu_{\\beta} \\gamma(x_{\\beta} - x_{\\alpha}),\n\\]"
+  },
+  {
+    "objectID": "02_Geostatistics.html#переход-от-ковариации-к-вариограмме-5",
+    "href": "02_Geostatistics.html#переход-от-ковариации-к-вариограмме-5",
+    "title": "Геостатистика",
+    "section": "Переход от ковариации к вариограмме",
+    "text": "Переход от ковариации к вариограмме\nВ линейных комбинациях приращений сумма коэффициентов всегда равна \\(0\\), поскольку это справедливо для каждого приращения.\nДля \\(\\alpha = 1\\):\n\\[\n\\lambda_1 (x_1 - x_0) = \\lambda_1 x_1 - \\lambda_1 x_0 = \\sum_{k=0}^1 \\rho_k x_k,\n\\]\nгде \\(\\rho_0 = -\\lambda_1\\), \\(\\rho_1 = \\lambda_1\\). Следовательно:\n\\[\n\\sum_{k=0}^1 \\rho_k = 0\n\\]"
+  },
+  {
+    "objectID": "02_Geostatistics.html#обычный-кригинг",
+    "href": "02_Geostatistics.html#обычный-кригинг",
+    "title": "Геостатистика",
+    "section": "Обычный кригинг",
+    "text": "Обычный кригинг\nПусть дано неизвестное среднее \\(m = a_0\\). Необходимо произвести линейную оценку \\(Z^* = \\sum_{i} \\lambda_i Z_i + \\lambda_0\\). Выразим среднюю квадратическую ошибку:\n\\[\n\\operatorname E\\big[(Z^* - Z_0)^2\\big] = \\operatorname {Var}[Z^* - Z_0] + \\big(E[Z^* - Z_0]\\big)^2 =\\\\\n= \\operatorname {Var}[Z^* - Z_0] + \\Bigg[\\lambda_0 + \\bigg(\\sum_i \\lambda_i - 1 \\bigg) a_0 \\Bigg]^2\n\\]\n\nТолько компонента сдвига \\(\\operatorname E[Z^* - Z_0]\\) содержит \\(\\lambda_0\\), однако, в отличие от случая простого кригинга, мы не можем минимизировать ее, не зная \\(a_0\\).\nЕдинственный способ избавиться от \\(a_0\\) заключается в том, чтобы наложить дополнительное условие \\(\\sum \\lambda_i - 1 = 0\\)"
+  },
+  {
+    "objectID": "02_Geostatistics.html#обычный-кригинг-1",
+    "href": "02_Geostatistics.html#обычный-кригинг-1",
+    "title": "Геостатистика",
+    "section": "Обычный кригинг",
+    "text": "Обычный кригинг\nМинимизируем ранее введенную функцию ошибки:\n\\[\n\\operatorname {Var}[Z^* - Z_0] = \\sum_{i}\\sum_{j} \\lambda_i \\lambda_j \\sigma_{ij} - 2 \\sum_{} \\lambda_i \\sigma_{i0} + \\sigma_{00}\n\\]\nДля этого, с учетом дополнительного условия \\(\\sum \\lambda_i - 1 = 0\\) применим метод множителей Лагранжа и построим вспомогательную функцию:\n\\[\nQ = \\operatorname {Var}[Z^* - Z_0] + 2\\mu \\bigg(\\sum_i \\lambda_i - 1 \\bigg),\n\\]\nгде \\(\\mu\\) – неизвестный множитель Лагранжа."
+  },
+  {
+    "objectID": "02_Geostatistics.html#обычный-кригинг-2",
+    "href": "02_Geostatistics.html#обычный-кригинг-2",
+    "title": "Геостатистика",
+    "section": "Обычный кригинг",
+    "text": "Обычный кригинг\n\\[\nQ = \\operatorname {Var}[Z^* - Z_0] + 2\\mu \\bigg(\\sum_i \\lambda_i - 1 \\bigg)\\]\nДля минимизации функции приравняем нулю ее частные производные:\n\\[\n\\begin{cases}\\frac{\\partial Q}{\\partial \\lambda_i} = 2 \\sum_j \\lambda_j \\sigma_{ij} - 2 \\sigma_{i0} + 2\\mu = 0,~i = 1,...,N,\\\\\n\\frac{\\partial Q}{\\partial \\mu} = 2\\bigg(\\sum_i \\lambda_i - 1 \\bigg) = 0\n\\end{cases}\n\\]"
+  },
+  {
+    "objectID": "02_Geostatistics.html#обычный-кригинг-3",
+    "href": "02_Geostatistics.html#обычный-кригинг-3",
+    "title": "Геостатистика",
+    "section": "Обычный кригинг",
+    "text": "Обычный кригинг\nИмеем \\(N + 1\\) уравнений с \\(N + 1\\) неизвестными:\n\\[\n\\begin{cases}\\sum_j \\lambda_j \\sigma_{ij} + \\mu = \\sigma_{i0},~i = 1,...,N,\\\\\n\\sum_i \\lambda_i = 1\n\\end{cases}\n\\]\nЗаменяя ковариацию на вариограмму, получаем систему уравнений обычного кригинга:\n\\[\n\\color{red}{\\boxed{\\color{blue}{\\begin{cases}\\sum_j \\lambda_j \\gamma_{ij} - \\mu = \\gamma_{i0},\\color{gray}{~i = 1,...,N,}\\\\\n\\sum_i \\lambda_i = 1\n\\end{cases}}}}\n\\]\n\nЭто наиболее часто используемый в геостатистике метод оценки"
+  },
+  {
+    "objectID": "02_Geostatistics.html#дисперсия-обычного-кригинга",
+    "href": "02_Geostatistics.html#дисперсия-обычного-кригинга",
+    "title": "Геостатистика",
+    "section": "Дисперсия обычного кригинга",
+    "text": "Дисперсия обычного кригинга\nВывод формулы для оценки дисперсии обычного кригинга выполняется аналогично случаю простого кригинга. Умножим \\(N\\) первых уравнений на \\(\\lambda_i\\), просуммируем их по \\(i\\):\n\\[\n\\sum_j \\lambda_j \\gamma_{ij} - \\mu = \\gamma_{i0}~\\Bigg|\\times \\lambda_i\n\\]\nУчтя дополнительное условие \\(\\sum_i \\lambda_i = 1\\), получаем выражение для оценки дисперсии (ошибки) обычного кригинга:\n\\[\n\\color{red}{\\boxed{\\color{blue}{\\sigma_{OK} = \\operatorname {Var}[Z^* - Z_0] = \\sum_{i}\\lambda_i\\gamma_{i0} - \\mu}}}\n\\]"
+  },
+  {
+    "objectID": "02_Geostatistics.html#универсальный-кригинг",
+    "href": "02_Geostatistics.html#универсальный-кригинг",
+    "title": "Геостатистика",
+    "section": "Универсальный кригинг",
+    "text": "Универсальный кригинг\nВ методе универсального кригинга осуществляется декомпозиция переменной \\(Z(x)\\) в виде следующей суммы:\n\\[\nZ(x) = m(x) + Y(x)\n\\]\n\n\\(m(x)\\) — дрифт (drift), гладкая детерминированная функция, описывающая систематическую составляющую пространственной изменчивости явления;\n\\(Y(x)\\) - остаток (residual), случайная функция с нулевым математическим ожиданием, описывающая случайную составляющую пространственной изменчивости явления;\n\n\nДекомпозиция любого явления на дрифт и остаток зависит от масштаба рассмотрения явления."
+  },
+  {
+    "objectID": "02_Geostatistics.html#универсальный-кригинг-1",
+    "href": "02_Geostatistics.html#универсальный-кригинг-1",
+    "title": "Геостатистика",
+    "section": "Универсальный кригинг",
+    "text": "Универсальный кригинг\nМетод универсального кригинга используется, когда математическое ожидание случайного процесса непостоянно по пространству. Это позволяет интерполировать данные, в которых присутствует тренд.\nВ предположении, что м.о. имеет функциональную зависимость от других процессов в точке \\(x\\), вводится следующая модель:\n\\[\nm(x) = \\sum_{k=0}^{K} a_k f^k(x),\n\\]\nгде \\(f^k(x)\\) — известные базисные функции, а \\(a_k\\) — фиксированные для точки \\(x\\), но неизвестные коэффициенты."
+  },
+  {
+    "objectID": "02_Geostatistics.html#универсальный-кригинг-2",
+    "href": "02_Geostatistics.html#универсальный-кригинг-2",
+    "title": "Геостатистика",
+    "section": "Универсальный кригинг",
+    "text": "Универсальный кригинг\n\\[\nm(x) = \\sum_{k=0}^{K} a_k f^k(x),\n\\]\n\nОбычно первая базисная функция при \\(k = 0\\) представляет собой константу, равную 1. Это позволяет включить в модель случай постоянного м.о.\nЕсли среднее зависит только от местоположения, то оставшиеся функции \\(f^k(x), k &gt; 0\\), как правило, представляют собой одночлены от координат (например, для двумерного случая \\(f^2(p) = x^2 + y^2\\))\nКоэффициенты \\(a_k\\) могут меняться в зависимости от \\(x\\), но обязательно медленно, чтобы их можно было считать постоянными в окрестности \\(x\\)."
+  },
+  {
+    "objectID": "02_Geostatistics.html#универсальный-кригинг-3",
+    "href": "02_Geostatistics.html#универсальный-кригинг-3",
+    "title": "Геостатистика",
+    "section": "Универсальный кригинг",
+    "text": "Универсальный кригинг\nВ качестве дрифта \\(m(x)\\) можно использовать не только функцию от местоположения, но также значения внешней переменной — ковариаты.\nНапример, количество осадков можно связать с высотой точки \\(H(x)\\) следующей моделью:\n\\[\nZ(x) = a_0 + a_1 H(x) + Y(x)\n\\]\nС статистической точки зрения это линейная регрессия, в которой остатки коррелированы (автокоррелированы).\n\nВ литературе данный метод называют также регрессионным кригингом (regression kriging), а оценка дрифта — пространственной регрессией (spatial regression)."
+  },
+  {
+    "objectID": "02_Geostatistics.html#универсальный-кригинг-4",
+    "href": "02_Geostatistics.html#универсальный-кригинг-4",
+    "title": "Геостатистика",
+    "section": "Универсальный кригинг",
+    "text": "Универсальный кригинг\nДля вывода уравнений рассмотрим среднеквадратическую ошибку:\n\\[\n\\operatorname E[Z^* - Z_0]^2 = \\operatorname {Var}[Z^* - Z_0] + \\big(\\operatorname E[Z^* - Z_0]\\big)^2\n\\]\nИспользуя введенную модель дрифта \\(m(x) = \\sum_{k=0}^{K} a^k f^k(x)\\) распишем выражение для мат.ожидания приращений:\n\\[\n\\operatorname E[Z^* - Z_0] = \\operatorname E[Z^*\\big] - \\operatorname E[Z_0] = \\\\\n\\sum_i \\lambda_i \\sum_k a_k f_i^k - \\sum_k a_k f_0^k = \\sum_k a_k \\Bigg(\\sum_i \\lambda_i f_i^k - f_0^k\\Bigg)\n\\]"
+  },
+  {
+    "objectID": "02_Geostatistics.html#универсальный-кригинг-5",
+    "href": "02_Geostatistics.html#универсальный-кригинг-5",
+    "title": "Геостатистика",
+    "section": "Универсальный кригинг",
+    "text": "Универсальный кригинг\n\\[\n\\operatorname E[Z^* - Z_0] = \\sum_k a_k \\Bigg(\\sum_i \\lambda_i f_i^k - f_0^k\\Bigg)\n\\]\nЧтобы минимизировать \\(\\operatorname E[Z^* - Z_0]\\) независимо от коэффициентов \\(a_k\\), достаточно в вышеприведенной формуле приравнять нулю выражение в скобках. Отсюда имеем:\n\\[\\sum_i \\lambda_i f_i^k = f_0^k,~k = 0, 1, ..., K.\\]\nЭти условия называются условиями универсальности. Отсюда идет название метода — универсальный кригинг\n\nУсловия универсальности гаранируют, что оценка \\(Z^*\\) является несмещенной для любых значений \\(a_k\\)."
+  },
+  {
+    "objectID": "02_Geostatistics.html#универсальный-кригинг-6",
+    "href": "02_Geostatistics.html#универсальный-кригинг-6",
+    "title": "Геостатистика",
+    "section": "Универсальный кригинг",
+    "text": "Универсальный кригинг\nМинимизируем ранее введенную функцию ошибки:\n\\[\n\\operatorname {Var}[Z^* - Z_0] = \\sum_{i}\\sum_{j} \\lambda_i \\lambda_j \\sigma_{ij} - 2 \\sum_{} \\lambda_i \\sigma_{i0} + \\sigma_{00}\n\\]\nДля этого, с учетом дополнительного условия \\(\\sum_i \\lambda_i f_i^k = f_0^k\\) применим метод множителей Лагранжа и построим вспомогательную функцию:\n\\[Q = \\operatorname {Var}[Z^* - Z_0] + 2 \\sum_{k=0}^K \\mu_k \\Bigg[ \\sum_i \\lambda_i f_i^k - f_0^k\\Bigg],\\]\nгде \\(\\mu_k,~k = 0, 1, ..., K\\) представляют \\(K + 1\\) дополнительных неизвестных, множители Лагранжа."
+  },
+  {
+    "objectID": "02_Geostatistics.html#универсальный-кригинг-7",
+    "href": "02_Geostatistics.html#универсальный-кригинг-7",
+    "title": "Геостатистика",
+    "section": "Универсальный кригинг",
+    "text": "Универсальный кригинг\n\\[\n\\operatorname {Var}[Z^* - Z_0] = \\sum_{i}\\sum_{j} \\lambda_i \\lambda_j \\sigma_{ij} - 2 \\sum_{} \\lambda_i \\sigma_{i0} + \\sigma_{00}\n\\]\nДля минимизации функции приравняем нулю ее частные производные:\n\\[\n\\begin{cases}\\frac{\\partial Q}{\\partial \\lambda_i} = 2 \\sum_j \\lambda_j \\sigma_{ij} -2 \\sigma_{i0} + 2 \\sum_k \\mu_k f_i^k = 0,\\color{gray}{~i = 1,...,N,}\\\\\n\\frac{\\partial Q}{\\partial \\mu} = 2\\bigg[\\sum_i \\lambda_i f_i^k - f_0^k \\bigg] = 0\\color{gray}{,~k = 0, 1,..., K.}\n\\end{cases}\n\\]"
+  },
+  {
+    "objectID": "02_Geostatistics.html#универсальный-кригинг-8",
+    "href": "02_Geostatistics.html#универсальный-кригинг-8",
+    "title": "Геостатистика",
+    "section": "Универсальный кригинг",
+    "text": "Универсальный кригинг\nИмеем систему из \\(N + K + 1\\) уравнений с \\(N + K + 1\\) неизвестными:\n\\[\n\\begin{cases}\\sum_j \\lambda_j \\sigma_{ij} + \\sum_k \\mu_k f_i^k = \\sigma_{i0},~i = 1,...,N,\\\\\n\\sum_i \\lambda_i f_i^k = f_0^k,~k = 0, 1,..., K.\n\\end{cases}\n\\]\nЗаменяя ковариацию на вариограмму, получаем систему уравнений универсального кригинга:\n\\[\n\\color{red}{\\boxed{\\color{blue}{\\begin{cases}\\sum_j \\lambda_j \\gamma_{ij} - \\sum_k \\mu_k f_i^k = \\gamma_{i0},\\color{gray}{~i = 1,...,N,}\\\\\n\\sum_i \\lambda_i f_i^k = f_0^k\\color{gray}{,~k = 0, 1,..., K.}\n\\end{cases}}}}\n\\]"
+  },
+  {
+    "objectID": "02_Geostatistics.html#дисперсия-универсального-кригинга",
+    "href": "02_Geostatistics.html#дисперсия-универсального-кригинга",
+    "title": "Геостатистика",
+    "section": "Дисперсия универсального кригинга",
+    "text": "Дисперсия универсального кригинга\nВывод формулы для оценки дисперсии универсального кригинга выполняется аналогично случаю обычного кригинга. Умножим \\(N\\) первых уравнений на \\(\\lambda_i\\), просуммируем их по \\(i\\):\n\\[\n\\sum_j \\lambda_j \\gamma_{ij} - \\sum_k \\mu_k f_i^k = \\gamma_{i0} ~ \\Bigg|\\times \\lambda_i\n\\]\nУчтя дополнительное условие \\(\\sum_i \\lambda_i f_i^k = f_0^k\\), получаем выражение для оценки дисперсии (ошибки) универсального кригинга:\n\\[\n\\color{red}{\\boxed{\\color{blue}{\\sigma^2_{UK} = E[Z^* - Z_0]^2 = \\sum_{i}\\lambda_i\\gamma_{i0} - \\sum_k \\mu_k f_0^k}}}\n\\]"
+  },
+  {
+    "objectID": "02_Geostatistics.html#переход-от-ковариации-к-вариограмме-6",
+    "href": "02_Geostatistics.html#переход-от-ковариации-к-вариограмме-6",
+    "title": "Геостатистика",
+    "section": "Переход от ковариации к вариограмме",
+    "text": "Переход от ковариации к вариограмме\nСтационарный случай:\n\\[\n\\operatorname {Cov} \\Bigg[\\sum_{\\alpha=1}^N \\lambda_{\\alpha} Z(x_{\\alpha}), \\sum_{\\beta=1}^M \\mu_{\\beta} Z(x_{\\beta}) \\Bigg] = \\sum_{\\alpha=1}^N \\sum_{\\beta=1}^M \\lambda_{\\alpha} \\mu_{\\beta} \\operatorname C(x_{\\beta} - x_{\\alpha})\n\\]\nВнутренняя гипотеза:\n\\[\n\\operatorname {Cov} \\Bigg[\\sum_{\\alpha=1}^N \\lambda_{\\alpha} Z(x_{\\alpha}), \\sum_{\\beta=1}^M \\mu_{\\beta} Z(x_{\\beta}) \\Bigg] = - \\sum_{\\alpha=1}^N \\sum_{\\beta=1}^M \\lambda_{\\alpha} \\mu_{\\beta} \\gamma(x_{\\beta} - x_{\\alpha})\n\\]\n\nПри соблюдении внутренней гипотезы в уравнениях кригинга можно принять \\(\\sigma_{\\alpha \\beta} = -\\gamma_{\\alpha \\beta}\\)"
   }
 ]

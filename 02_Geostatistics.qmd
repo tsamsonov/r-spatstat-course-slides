@@ -432,7 +432,7 @@ $$
 
 ## Дисперсия простого кригинга
 
-Заменим $\sum_{i}\sum_{j} \lambda_i \lambda_j \sigma_{ij}$ на $\sum_{i}\lambda_i\sigma_{i0}$ в выражении для ско:
+Заменим $\sum_{i}\sum_{j} \lambda_i \lambda_j \sigma_{ij}$ на $\sum_{i}\lambda_i\sigma_{i0}$ в выражении для СКО:
 
 $$
 \operatorname{Var}[Z^* - Z_0] = \color{red}{\sum_{i}\sum_{j} \lambda_i \lambda_j \sigma_{ij}} - 2 \sum_{} \lambda_i \sigma_{i0} + \sigma_{00} =\\
@@ -443,6 +443,388 @@ $$
 
 $$
 \color{red}{\boxed{\color{blue}{\sigma_{SK} = \operatorname{Var}[Z^* - Z_0] = \sigma_{00} - \sum_{i}\lambda_i\sigma_{i0}}}}
+$$
+
+
+---
+
+## Стационарность приращений
+
+Стационарность второго порядка требует знания математического ожидания для вычисления ковариации. 
+В ряде случаев оценить математическое ожидание оказывается невозможно (оно может не существовать) или же оно действительно оказывается непостоянным.
+
+Тогда пользуются еще более мягкой формой стационарности —  __стационарностью приращений__, при которой стационарной предполагается не сама с.ф. $Z(x)$, а производная от нее функция: 
+
+  $$Y_h(x) = Z(x+h)-Z(x)$$
+
+Функция $Z(x)$, обладающая таким свойством, называется подчиняющейся _внутренней гипотезе_.
+
+
+## Стационарность приращений
+
+У функции $Y_h(x) = Z(x+h)-Z(x)$ должны существовать математическое ожидание и дисперсия __приращений__:
+
+$$
+\begin{cases}
+\operatorname E[Z(x+h)-Z(x)] = \langle a,h \rangle \\
+\operatorname {Var}[Z(x+h)-Z(x)] = 2\gamma(h)
+\end{cases}
+$$
+
+- $\langle a,h \rangle$ обозначает линейный тренд $a$ при заданном векторе $h$ (_математическое ожидание разности значений_), который выражается через скалярное произведение: $\langle a,h \rangle = \sum_i a_i h_i$
+
+- $\gamma(h)$ — дисперсия приращений, называемая _вариограммой_
+
+---
+
+## Стационарность приращений
+
+$$
+\begin{cases}
+\operatorname E[Z(x+h)-Z(x)] = \langle a,h \rangle \\
+\operatorname {Var}[Z(x+h)-Z(x)] = 2\gamma(h)
+\end{cases}
+$$
+
+Если процесс подчиняется гипотезе стационарности второго рода $\operatorname E[Z(x)] = m$, то $\operatorname E[Z(x+h)-Z(x)] = \operatorname E[Y_h(x)] = 0$ и вариограмму можно выразить следующим образом:
+
+$$
+2\gamma(h) = \operatorname {Var}[Z(x+h)-Z(x)] = \operatorname {Var}[Y_h(x)] \\= \operatorname E\big[Y_h(x)\big]^2 - \Big(\operatorname E\big[Y_h(x)\big]\Big)^2 \\= \operatorname E\big[Y_h(x)\big]^2 = \operatorname E\big[Z(x+h)-Z(x)\big]^2
+$$
+
+## Стационарность приращений
+
+Таким образом, наиболее распространенная в геостатистике гипотеза подчиняется следующим условиям:
+
+$$
+\begin{cases}
+\operatorname E\big[Z(x)\big] = m\\
+\operatorname E\big[Z(x+h)-Z(x)\big] = 0 \\
+\operatorname E\big[Z(x+h)-Z(x)\big]^2 = 2\gamma(h)
+\end{cases}
+$$
+
+- Эти условия позволяют избавиться от необходимости знания среднего значения и дисперсии случайной функции и использовать для вычислений вариограмму. 
+
+- Чтобы модифицировать соответствующим образом уравнения простого кригинга, необходимо знать связь между ковариацией и вариограммой.
+
+## Переход от ковариации к вариограмме
+
+Рассмотрим ковариацию двух линейных комбинаций с.ф.:
+
+$$
+\operatorname {Cov} \Bigg[\sum_{\alpha=1}^N \lambda_{\alpha} Z(x_{\alpha}), \sum_{\beta=1}^M \mu_{\beta} Z(x_{\beta}) \Bigg] = \sum_{\alpha=1}^N \sum_{\beta=1}^M \lambda_{\alpha} \mu_{\beta} \operatorname C(x_{\beta} - x_{\alpha})
+$$
+
+Используя правило $\operatorname {Cov}[X + \alpha, Y + \beta] = \operatorname {Cov}[X, Y]$, введем условное начало координат:
+
+$$
+\sum_{\alpha=1}^N \sum_{\beta=1}^M \lambda_{\alpha} \mu_{\beta} \operatorname C(x_{\beta} - x_{\alpha}) =\\
+=\sum_{\alpha=1}^N \sum_{\beta=1}^M \lambda_{\alpha} \mu_{\beta} \operatorname {Cov} \big[Z(x_{\alpha}) - Z(x_0), Z(x_{\beta}) - Z(x_0)\big]
+$$
+
+## Переход от ковариации к вариограмме
+
+Распишем ковариацию через математические ожидания, учитывая, что, согласно гипотезе, $\operatorname E\big[Z(x+h)-Z(x)\big] = 0$:
+
+$$
+\operatorname {Cov} \big[Z(x_{\alpha}) - Z(x_0), Z(x_{\beta}) - Z(x_0)\big] =\\
+= \operatorname E\big[Z_{\alpha} - Z_0\big]\big[Z_{\beta} - Z_0\big] - \operatorname E\big[Z_{\alpha} - Z_0\big] \operatorname E\big[Z_{\beta} - Z_0\big] = \\
+= \operatorname E\big[Z_{\alpha} - Z_0\big]\big[Z_{\beta} - Z_0\big]
+$$
+
+Обратим внимание, что произведение приращений можно выразить через квадраты приращений:
+
+$$
+\color{blue}{(Z_{\beta} - Z_{\alpha})^2} = \big[(Z_{\beta} - Z_0) - (Z_{\alpha} - Z_0)\big]^2 = \\ = \color{blue}{(Z_{\alpha} - Z_0)^2} - 2\color{red}{(Z_{\alpha} - Z_0)(Z_{\beta} - Z_0)} + \color{blue}{(Z_{\beta} - Z_0)^2}
+$$
+
+## Переход от ковариации к вариограмме
+
+Имеем:
+
+$$
+(Z_{\alpha} - Z_0)(Z_{\beta} - Z_0) = \frac{1}{2} \Big[(Z_{\alpha} - Z_0)^2 + (Z_{\beta} - Z_0)^2 - (Z_{\beta} - Z_{\alpha})^2\Big]
+$$
+
+Учитывая, что $\operatorname E\big[Z(x+h)-Z(x)\big]^2 = 2\gamma(h)$, подставим это выражение в формулу вычисления ковариации:
+
+$$
+\operatorname {Cov} \big[Z(x_{\alpha}) - Z(x_0), Z(x_{\beta}) - Z(x_0)\big] = \operatorname E\big[Z_{\alpha} - Z_0\big]\big[Z_{\beta} - Z_0\big] = \\
+= \frac{1}{2} \operatorname E \Big[(Z_{\alpha} - Z_0)^2 + (Z_{\beta} - Z_0)^2 - (Z_{\beta} - Z_{\alpha})^2\Big] = \\
+= \gamma(x_{\alpha} - x_0) + \gamma(x_{\beta} - x_0) - \gamma(x_{\beta} - x_{\alpha})
+$$
+
+## Переход от ковариации к вариограмме
+
+Подставим полученное выражение в двойную сумму:
+
+$$
+\sum_{\alpha=1}^N \sum_{\beta=1}^M \lambda_{\alpha} \mu_{\beta} \operatorname {Cov} \big[Z(x_{\alpha}) - Z(x_0), Z(x_{\beta}) - Z(x_0)\big] = \\ 
+= \sum_{\alpha=1}^N \sum_{\beta=1}^M \lambda_{\alpha} \mu_{\beta} \big[\gamma(x_{\alpha} - x_0) + \gamma(x_{\beta} - x_0) - \gamma(x_{\beta} - x_{\alpha})\big] = \\
+= \color{blue}{\underbrace{\sum_{\alpha=1}^N \sum_{\beta=1}^M \lambda_{\alpha} \mu_{\beta} \gamma(x_{\alpha} - x_0)}_0} + \color{red}{\underbrace{\sum_{\alpha=1}^N \sum_{\beta=1}^M \lambda_{\alpha} \mu_{\beta} \gamma(x_{\beta} - x_0)}_0} - \sum_{\alpha=1}^N \sum_{\beta=1}^M \lambda_{\alpha} \mu_{\beta} \gamma(x_{\beta} - x_{\alpha}) = \\
+= - \sum_{\alpha=1}^N \sum_{\beta=1}^M \lambda_{\alpha} \mu_{\beta} \gamma(x_{\beta} - x_{\alpha}),
+$$
+
+## Переход от ковариации к вариограмме
+
+Подставим полученное выражение в двойную сумму:
+
+$$
+\sum_{\alpha=1}^N \sum_{\beta=1}^M \lambda_{\alpha} \mu_{\beta} \operatorname {Cov} \big[Z(x_{\alpha}) - Z(x_0), Z(x_{\beta}) - Z(x_0)\big] = \\ 
+= - \sum_{\alpha=1}^N \sum_{\beta=1}^M \lambda_{\alpha} \mu_{\beta} \gamma(x_{\beta} - x_{\alpha}),
+$$
+
+- $\sum_{\alpha=1}^N \sum_{\beta=1}^M \lambda_{\alpha} \mu_{\beta} \gamma(x_{\alpha} - x_0) = \color{blue}{\underbrace{\sum_{\beta=1}^M \mu_{\beta}}_0} \sum_{\alpha=1}^N \lambda_{\alpha} \gamma(x_{\alpha} - x_0) = 0$
+
+- $\sum_{\alpha=1}^N \sum_{\beta=1}^M \lambda_{\alpha} \mu_{\beta} \gamma(x_{\beta} - x_0) = \color{red}{\underbrace{\sum_{\alpha=1}^N \lambda_{\alpha}}_0} \sum_{\beta=1}^M \mu_{\beta} \gamma(x_{\beta} - x_0) = 0$
+
+## Переход от ковариации к вариограмме
+
+В линейных комбинациях приращений сумма коэффициентов всегда равна $0$, поскольку это справедливо для каждого приращения. 
+
+Для $\alpha = 1$:
+
+$$
+\lambda_1 (x_1 - x_0) = \lambda_1 x_1 - \lambda_1 x_0 = \sum_{k=0}^1 \rho_k x_k,
+$$
+
+где $\rho_0 = -\lambda_1$, $\rho_1 = \lambda_1$. Следовательно:
+
+$$
+\sum_{k=0}^1 \rho_k = 0
+$$
+
+## Переход от ковариации к вариограмме
+
+Стационарный случай:
+
+$$
+\operatorname {Cov} \Bigg[\sum_{\alpha=1}^N \lambda_{\alpha} Z(x_{\alpha}), \sum_{\beta=1}^M \mu_{\beta} Z(x_{\beta}) \Bigg] = \sum_{\alpha=1}^N \sum_{\beta=1}^M \lambda_{\alpha} \mu_{\beta} \operatorname C(x_{\beta} - x_{\alpha})
+$$
+
+Внутренняя гипотеза:
+
+$$
+\operatorname {Cov} \Bigg[\sum_{\alpha=1}^N \lambda_{\alpha} Z(x_{\alpha}), \sum_{\beta=1}^M \mu_{\beta} Z(x_{\beta}) \Bigg] = - \sum_{\alpha=1}^N \sum_{\beta=1}^M \lambda_{\alpha} \mu_{\beta} \gamma(x_{\beta} - x_{\alpha})
+$$
+
+> При соблюдении внутренней гипотезы в уравнениях кригинга можно принять $\sigma_{\alpha \beta} = -\gamma_{\alpha \beta}$
+
+## Обычный кригинг
+
+Пусть дано неизвестное среднее $m = a_0$. Необходимо произвести линейную оценку $Z^* = \sum_{i} \lambda_i Z_i + \lambda_0$. Выразим среднюю квадратическую ошибку:
+
+$$
+\operatorname E\big[(Z^* - Z_0)^2\big] = \operatorname {Var}[Z^* - Z_0] + \big(E[Z^* - Z_0]\big)^2 =\\
+= \operatorname {Var}[Z^* - Z_0] + \Bigg[\lambda_0 + \bigg(\sum_i \lambda_i - 1 \bigg) a_0 \Bigg]^2
+$$
+
+- Только компонента сдвига $\operatorname E[Z^* - Z_0]$ содержит $\lambda_0$, однако, в отличие от случая простого кригинга, мы не можем минимизировать ее, не зная $a_0$.
+- Единственный способ избавиться от $a_0$ заключается в том, чтобы наложить дополнительное условие $\sum \lambda_i - 1 = 0$
+
+## Обычный кригинг
+
+Минимизируем ранее введенную функцию ошибки:
+
+$$
+\operatorname {Var}[Z^* - Z_0] = \sum_{i}\sum_{j} \lambda_i \lambda_j \sigma_{ij} - 2 \sum_{} \lambda_i \sigma_{i0} + \sigma_{00}
+$$
+
+Для этого, с учетом дополнительного условия  $\sum \lambda_i - 1 = 0$ применим метод множителей Лагранжа и построим вспомогательную функцию:
+
+$$
+Q = \operatorname {Var}[Z^* - Z_0] + 2\mu \bigg(\sum_i \lambda_i - 1 \bigg),
+$$
+
+где $\mu$ -- неизвестный множитель Лагранжа.
+
+## Обычный кригинг
+
+$$
+Q = \operatorname {Var}[Z^* - Z_0] + 2\mu \bigg(\sum_i \lambda_i - 1 \bigg)$$
+
+Для минимизации функции приравняем нулю ее частные производные:
+
+$$
+\begin{cases}\frac{\partial Q}{\partial \lambda_i} = 2 \sum_j \lambda_j \sigma_{ij} - 2 \sigma_{i0} + 2\mu = 0,~i = 1,...,N,\\
+\frac{\partial Q}{\partial \mu} = 2\bigg(\sum_i \lambda_i - 1 \bigg) = 0
+\end{cases}
+$$
+
+## Обычный кригинг
+
+Имеем $N + 1$ уравнений с $N + 1$ неизвестными:
+
+$$
+\begin{cases}\sum_j \lambda_j \sigma_{ij} + \mu = \sigma_{i0},~i = 1,...,N,\\
+\sum_i \lambda_i = 1
+\end{cases}
+$$
+
+Заменяя ковариацию на вариограмму, получаем __систему уравнений обычного кригинга__:
+
+$$
+\color{red}{\boxed{\color{blue}{\begin{cases}\sum_j \lambda_j \gamma_{ij} - \mu = \gamma_{i0},\color{gray}{~i = 1,...,N,}\\
+\sum_i \lambda_i = 1
+\end{cases}}}}
+$$
+
+> Это наиболее часто используемый в геостатистике метод оценки
+
+## Дисперсия обычного кригинга
+
+Вывод формулы для оценки дисперсии обычного кригинга выполняется аналогично случаю простого кригинга. Умножим $N$ первых уравнений на $\lambda_i$, просуммируем их по $i$:
+
+$$
+\sum_j \lambda_j \gamma_{ij} - \mu = \gamma_{i0}~\Bigg|\times \lambda_i
+$$
+
+Учтя дополнительное условие $\sum_i \lambda_i = 1$, получаем выражение для оценки дисперсии (ошибки) обычного кригинга:
+
+$$
+\color{red}{\boxed{\color{blue}{\sigma_{OK} = \operatorname {Var}[Z^* - Z_0] = \sum_{i}\lambda_i\gamma_{i0} - \mu}}}
+$$
+
+## Универсальный кригинг
+
+В методе универсального кригинга осуществляется декомпозиция переменной $Z(x)$ в виде следующей суммы:
+
+$$
+Z(x) = m(x) + Y(x)
+$$
+
+- $m(x)$ — __дрифт__ (_drift_), гладкая детерминированная функция, описывающая _систематическую_ составляющую пространственной изменчивости явления;
+
+- $Y(x)$ - __остаток__ (_residual_), случайная функция с нулевым математическим ожиданием, описывающая _случайную_ составляющую пространственной изменчивости явления;
+
+> Декомпозиция любого явления на дрифт и остаток зависит от масштаба рассмотрения явления. 
+
+## Универсальный кригинг
+
+Метод универсального кригинга используется, когда математическое ожидание случайного процесса непостоянно по пространству. Это позволяет интерполировать данные, в которых присутствует тренд.
+
+В предположении, что м.о. имеет функциональную зависимость от других процессов в точке $x$, вводится следующая модель:
+
+$$
+m(x) = \sum_{k=0}^{K} a_k f^k(x),
+$$
+
+где $f^k(x)$ — известные _базисные функции_, а $a_k$ — фиксированные для точки $x$, но неизвестные коэффициенты.
+
+## Универсальный кригинг
+
+$$
+m(x) = \sum_{k=0}^{K} a_k f^k(x),
+$$
+
+- Обычно первая базисная функция при $k = 0$ представляет собой константу, равную 1. Это позволяет включить в модель случай постоянного м.о.
+
+- Если среднее зависит только от местоположения, то оставшиеся функции $f^k(x), k > 0$, как правило, представляют собой одночлены от координат (например, для двумерного случая $f^2(p) = x^2 + y^2$)
+
+- Коэффициенты $a_k$ могут меняться в зависимости от $x$, но обязательно медленно, чтобы их можно было считать постоянными в окрестности $x$.
+
+## Универсальный кригинг
+
+В качестве дрифта $m(x)$ можно использовать не только функцию от местоположения, но также значения внешней переменной — __ковариаты__.
+
+Например, количество осадков можно связать с высотой точки $H(x)$ следующей моделью:
+
+$$
+Z(x) = a_0 + a_1 H(x) + Y(x)
+$$
+
+С статистической точки зрения это линейная регрессия, в которой остатки коррелированы (автокоррелированы).
+
+> В литературе данный метод называют также __регрессионным кригингом__ (_regression kriging_), а оценка дрифта — __пространственной регрессией__ (_spatial regression_).
+
+## Универсальный кригинг
+
+Для вывода уравнений рассмотрим среднеквадратическую ошибку:
+
+$$
+\operatorname E[Z^* - Z_0]^2 = \operatorname {Var}[Z^* - Z_0] + \big(\operatorname E[Z^* - Z_0]\big)^2
+$$
+
+Используя введенную модель дрифта $m(x) = \sum_{k=0}^{K} a^k f^k(x)$ распишем выражение для мат.ожидания приращений:
+
+$$
+\operatorname E[Z^* - Z_0] = \operatorname E[Z^*\big] - \operatorname E[Z_0] = \\
+\sum_i \lambda_i \sum_k a_k f_i^k - \sum_k a_k f_0^k = \sum_k a_k \Bigg(\sum_i \lambda_i f_i^k - f_0^k\Bigg)
+$$
+
+## Универсальный кригинг
+
+$$
+\operatorname E[Z^* - Z_0] = \sum_k a_k \Bigg(\sum_i \lambda_i f_i^k - f_0^k\Bigg)
+$$
+
+Чтобы минимизировать $\operatorname E[Z^* - Z_0]$ независимо от коэффициентов $a_k$, достаточно в вышеприведенной формуле приравнять нулю выражение в скобках. Отсюда имеем:
+
+$$\sum_i \lambda_i f_i^k = f_0^k,~k = 0, 1, ..., K.$$
+
+Эти условия называются __условиями универсальности__. Отсюда идет название метода — _универсальный кригинг_
+
+> Условия универсальности гаранируют, что оценка $Z^*$ является __несмещенной__ для _любых_ значений $a_k$.
+
+## Универсальный кригинг
+
+Минимизируем ранее введенную функцию ошибки:
+
+$$
+\operatorname {Var}[Z^* - Z_0] = \sum_{i}\sum_{j} \lambda_i \lambda_j \sigma_{ij} - 2 \sum_{} \lambda_i \sigma_{i0} + \sigma_{00}
+$$
+
+Для этого, с учетом дополнительного условия  $\sum_i \lambda_i f_i^k = f_0^k$ применим метод множителей Лагранжа и построим вспомогательную функцию:
+
+$$Q = \operatorname {Var}[Z^* - Z_0] + 2 \sum_{k=0}^K \mu_k \Bigg[ \sum_i \lambda_i f_i^k - f_0^k\Bigg],$$
+
+где $\mu_k,~k = 0, 1, ..., K$ представляют $K + 1$ дополнительных неизвестных, множители Лагранжа.
+
+## Универсальный кригинг
+
+$$
+\operatorname {Var}[Z^* - Z_0] = \sum_{i}\sum_{j} \lambda_i \lambda_j \sigma_{ij} - 2 \sum_{} \lambda_i \sigma_{i0} + \sigma_{00}
+$$
+
+Для минимизации функции приравняем нулю ее частные производные:
+
+$$
+\begin{cases}\frac{\partial Q}{\partial \lambda_i} = 2 \sum_j \lambda_j \sigma_{ij} -2 \sigma_{i0} + 2 \sum_k \mu_k f_i^k = 0,\color{gray}{~i = 1,...,N,}\\
+\frac{\partial Q}{\partial \mu} = 2\bigg[\sum_i \lambda_i f_i^k - f_0^k \bigg] = 0\color{gray}{,~k = 0, 1,..., K.}
+\end{cases}
+$$
+
+## Универсальный кригинг
+
+Имеем систему из $N + K + 1$ уравнений с $N + K + 1$ неизвестными:
+
+$$
+\begin{cases}\sum_j \lambda_j \sigma_{ij} + \sum_k \mu_k f_i^k = \sigma_{i0},~i = 1,...,N,\\
+\sum_i \lambda_i f_i^k = f_0^k,~k = 0, 1,..., K.
+\end{cases}
+$$
+
+Заменяя ковариацию на вариограмму, получаем __систему уравнений универсального кригинга__:
+
+$$
+\color{red}{\boxed{\color{blue}{\begin{cases}\sum_j \lambda_j \gamma_{ij} - \sum_k \mu_k f_i^k = \gamma_{i0},\color{gray}{~i = 1,...,N,}\\
+\sum_i \lambda_i f_i^k = f_0^k\color{gray}{,~k = 0, 1,..., K.}
+\end{cases}}}}
+$$
+
+## Дисперсия универсального кригинга
+
+Вывод формулы для оценки дисперсии универсального кригинга выполняется аналогично случаю обычного кригинга. Умножим $N$ первых уравнений на $\lambda_i$, просуммируем их по $i$:
+
+$$
+\sum_j \lambda_j \gamma_{ij} - \sum_k \mu_k f_i^k = \gamma_{i0} ~ \Bigg|\times \lambda_i
+$$
+
+Учтя дополнительное условие $\sum_i \lambda_i f_i^k = f_0^k$, получаем выражение для оценки дисперсии (ошибки) универсального кригинга:
+
+$$
+\color{red}{\boxed{\color{blue}{\sigma^2_{UK} = E[Z^* - Z_0]^2 = \sum_{i}\lambda_i\gamma_{i0} - \sum_k \mu_k f_0^k}}}
 $$
 
 ## Библиография
