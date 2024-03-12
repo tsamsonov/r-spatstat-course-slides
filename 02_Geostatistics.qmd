@@ -24,7 +24,7 @@ mainfont: PT Sans
 ## Базовые компоненты
 
 1.  Пространственные локации (точки) $$\{p_1, p_2, ..., p_n\}$$
-2.  Данные в этих локациях $$\{Z(p_1), Z(p_2), ..., Z(p_n)\}$$ 
+2.  Данные в этих локациях $$\{Z(p_1), Z(p_2), ..., Z(p_n)\}$$
 
 > Обе компоненты в общем случае являются случайными
 
@@ -52,13 +52,13 @@ $Z(p)$ — **случайная величина** в точке $p$
 
 $$
 \{Z(p) | p \in D\}
-$$ 
+$$
 
 Результат наблюдения случайного процесса в точках $D$ является **реализацией** случайного процесса:
 
 $$
 \{z(p) | p \in D\}
-$$ 
+$$
 
 > В общем случае $D$ и $Z$ случайны и независимы
 
@@ -117,6 +117,7 @@ $$
 ## Пространственная статистика
 
 1.  **Геостатистика** *(geostatistics)*
+
     -   $D$ — фиксированное подмножество в $\mathbb{R}^k$
     -   $Z(p)$ — случайный вектор в каждой точке $p$
     -   Исследуется пространственное распределение
@@ -445,24 +446,21 @@ $$
 \color{red}{\boxed{\color{blue}{\sigma_{SK} = \operatorname{Var}[Z^* - Z_0] = \sigma_{00} - \sum_{i}\lambda_i\sigma_{i0}}}}
 $$
 
-
----
-
-## Стационарность приращений
-
-Стационарность второго порядка требует знания математического ожидания для вычисления ковариации. 
-В ряде случаев оценить математическое ожидание оказывается невозможно (оно может не существовать) или же оно действительно оказывается непостоянным.
-
-Тогда пользуются еще более мягкой формой стационарности —  __стационарностью приращений__, при которой стационарной предполагается не сама с.ф. $Z(x)$, а производная от нее функция: 
-
-  $$Y_h(x) = Z(x+h)-Z(x)$$
-
-Функция $Z(x)$, обладающая таким свойством, называется подчиняющейся _внутренней гипотезе_.
-
+------------------------------------------------------------------------
 
 ## Стационарность приращений
 
-У функции $Y_h(x) = Z(x+h)-Z(x)$ должны существовать математическое ожидание и дисперсия __приращений__:
+Стационарность второго порядка требует знания математического ожидания для вычисления ковариации. В ряде случаев оценить математическое ожидание оказывается невозможно (оно может не существовать) или же оно действительно оказывается непостоянным.
+
+Тогда пользуются еще более мягкой формой стационарности — **стационарностью приращений**, при которой стационарной предполагается не сама с.ф. $Z(x)$, а производная от нее функция:
+
+$$Y_h(x) = Z(x+h)-Z(x)$$
+
+Функция $Z(x)$, обладающая таким свойством, называется подчиняющейся *внутренней гипотезе*.
+
+## Стационарность приращений
+
+У функции $Y_h(x) = Z(x+h)-Z(x)$ должны существовать математическое ожидание и дисперсия **приращений**:
 
 $$
 \begin{cases}
@@ -471,11 +469,11 @@ $$
 \end{cases}
 $$
 
-- $\langle a,h \rangle$ обозначает линейный тренд $a$ при заданном векторе $h$ (_математическое ожидание разности значений_), который выражается через скалярное произведение: $\langle a,h \rangle = \sum_i a_i h_i$
+-   $\langle a,h \rangle$ обозначает линейный тренд $a$ при заданном векторе $h$ (*математическое ожидание разности значений*), который выражается через скалярное произведение: $\langle a,h \rangle = \sum_i a_i h_i$
 
-- $\gamma(h)$ — дисперсия приращений, называемая _вариограммой_
+-   $\gamma(h)$ — дисперсия приращений, называемая *вариограммой*
 
----
+------------------------------------------------------------------------
 
 ## Стационарность приращений
 
@@ -504,9 +502,9 @@ $$
 \end{cases}
 $$
 
-- Эти условия позволяют избавиться от необходимости знания среднего значения и дисперсии случайной функции и использовать для вычислений вариограмму. 
+-   Эти условия позволяют избавиться от необходимости знания среднего значения и дисперсии случайной функции и использовать для вычислений вариограмму.
 
-- Чтобы модифицировать соответствующим образом уравнения простого кригинга, необходимо знать связь между ковариацией и вариограммой.
+-   Чтобы модифицировать соответствующим образом уравнения простого кригинга, необходимо знать связь между ковариацией и вариограммой.
 
 ## Переход от ковариации к вариограмме
 
@@ -575,13 +573,13 @@ $$
 = - \sum_{\alpha=1}^N \sum_{\beta=1}^M \lambda_{\alpha} \mu_{\beta} \gamma(x_{\beta} - x_{\alpha}),
 $$
 
-- $\sum_{\alpha=1}^N \sum_{\beta=1}^M \lambda_{\alpha} \mu_{\beta} \gamma(x_{\alpha} - x_0) = \color{blue}{\underbrace{\sum_{\beta=1}^M \mu_{\beta}}_0} \sum_{\alpha=1}^N \lambda_{\alpha} \gamma(x_{\alpha} - x_0) = 0$
+-   $\sum_{\alpha=1}^N \sum_{\beta=1}^M \lambda_{\alpha} \mu_{\beta} \gamma(x_{\alpha} - x_0) = \color{blue}{\underbrace{\sum_{\beta=1}^M \mu_{\beta}}_0} \sum_{\alpha=1}^N \lambda_{\alpha} \gamma(x_{\alpha} - x_0) = 0$
 
-- $\sum_{\alpha=1}^N \sum_{\beta=1}^M \lambda_{\alpha} \mu_{\beta} \gamma(x_{\beta} - x_0) = \color{red}{\underbrace{\sum_{\alpha=1}^N \lambda_{\alpha}}_0} \sum_{\beta=1}^M \mu_{\beta} \gamma(x_{\beta} - x_0) = 0$
+-   $\sum_{\alpha=1}^N \sum_{\beta=1}^M \lambda_{\alpha} \mu_{\beta} \gamma(x_{\beta} - x_0) = \color{red}{\underbrace{\sum_{\alpha=1}^N \lambda_{\alpha}}_0} \sum_{\beta=1}^M \mu_{\beta} \gamma(x_{\beta} - x_0) = 0$
 
 ## Переход от ковариации к вариограмме
 
-В линейных комбинациях приращений сумма коэффициентов всегда равна $0$, поскольку это справедливо для каждого приращения. 
+В линейных комбинациях приращений сумма коэффициентов всегда равна $0$, поскольку это справедливо для каждого приращения.
 
 Для $\alpha = 1$:
 
@@ -620,8 +618,8 @@ $$
 = \operatorname {Var}[Z^* - Z_0] + \Bigg[\lambda_0 + \bigg(\sum_i \lambda_i - 1 \bigg) a_0 \Bigg]^2
 $$
 
-- Только компонента сдвига $\operatorname E[Z^* - Z_0]$ содержит $\lambda_0$, однако, в отличие от случая простого кригинга, мы не можем минимизировать ее, не зная $a_0$.
-- Единственный способ избавиться от $a_0$ заключается в том, чтобы наложить дополнительное условие $\sum \lambda_i - 1 = 0$
+-   Только компонента сдвига $\operatorname E[Z^* - Z_0]$ содержит $\lambda_0$, однако, в отличие от случая простого кригинга, мы не можем минимизировать ее, не зная $a_0$.
+-   Единственный способ избавиться от $a_0$ заключается в том, чтобы наложить дополнительное условие $\sum \lambda_i - 1 = 0$
 
 ## Обычный кригинг
 
@@ -631,7 +629,7 @@ $$
 \operatorname {Var}[Z^* - Z_0] = \sum_{i}\sum_{j} \lambda_i \lambda_j \sigma_{ij} - 2 \sum_{} \lambda_i \sigma_{i0} + \sigma_{00}
 $$
 
-Для этого, с учетом дополнительного условия  $\sum \lambda_i - 1 = 0$ применим метод множителей Лагранжа и построим вспомогательную функцию:
+Для этого, с учетом дополнительного условия $\sum \lambda_i - 1 = 0$ применим метод множителей Лагранжа и построим вспомогательную функцию:
 
 $$
 Q = \operatorname {Var}[Z^* - Z_0] + 2\mu \bigg(\sum_i \lambda_i - 1 \bigg),
@@ -662,7 +660,7 @@ $$
 \end{cases}
 $$
 
-Заменяя ковариацию на вариограмму, получаем __систему уравнений обычного кригинга__:
+Заменяя ковариацию на вариограмму, получаем **систему уравнений обычного кригинга**:
 
 $$
 \color{red}{\boxed{\color{blue}{\begin{cases}\sum_j \lambda_j \gamma_{ij} - \mu = \gamma_{i0},\color{gray}{~i = 1,...,N,}\\
@@ -694,11 +692,11 @@ $$
 Z(x) = m(x) + Y(x)
 $$
 
-- $m(x)$ — __дрифт__ (_drift_), гладкая детерминированная функция, описывающая _систематическую_ составляющую пространственной изменчивости явления;
+-   $m(x)$ — **дрифт** (*drift*), гладкая детерминированная функция, описывающая *систематическую* составляющую пространственной изменчивости явления;
 
-- $Y(x)$ - __остаток__ (_residual_), случайная функция с нулевым математическим ожиданием, описывающая _случайную_ составляющую пространственной изменчивости явления;
+-   $Y(x)$ - **остаток** (*residual*), случайная функция с нулевым математическим ожиданием, описывающая *случайную* составляющую пространственной изменчивости явления;
 
-> Декомпозиция любого явления на дрифт и остаток зависит от масштаба рассмотрения явления. 
+> Декомпозиция любого явления на дрифт и остаток зависит от масштаба рассмотрения явления.
 
 ## Универсальный кригинг
 
@@ -710,7 +708,7 @@ $$
 m(x) = \sum_{k=0}^{K} a_k f^k(x),
 $$
 
-где $f^k(x)$ — известные _базисные функции_, а $a_k$ — фиксированные для точки $x$, но неизвестные коэффициенты.
+где $f^k(x)$ — известные *базисные функции*, а $a_k$ — фиксированные для точки $x$, но неизвестные коэффициенты.
 
 ## Универсальный кригинг
 
@@ -718,15 +716,15 @@ $$
 m(x) = \sum_{k=0}^{K} a_k f^k(x),
 $$
 
-- Обычно первая базисная функция при $k = 0$ представляет собой константу, равную 1. Это позволяет включить в модель случай постоянного м.о.
+-   Обычно первая базисная функция при $k = 0$ представляет собой константу, равную 1. Это позволяет включить в модель случай постоянного м.о.
 
-- Если среднее зависит только от местоположения, то оставшиеся функции $f^k(x), k > 0$, как правило, представляют собой одночлены от координат (например, для двумерного случая $f^2(p) = x^2 + y^2$)
+-   Если среднее зависит только от местоположения, то оставшиеся функции $f^k(x), k > 0$, как правило, представляют собой одночлены от координат (например, для двумерного случая $f^2(p) = x^2 + y^2$)
 
-- Коэффициенты $a_k$ могут меняться в зависимости от $x$, но обязательно медленно, чтобы их можно было считать постоянными в окрестности $x$.
+-   Коэффициенты $a_k$ могут меняться в зависимости от $x$, но обязательно медленно, чтобы их можно было считать постоянными в окрестности $x$.
 
 ## Универсальный кригинг
 
-В качестве дрифта $m(x)$ можно использовать не только функцию от местоположения, но также значения внешней переменной — __ковариаты__.
+В качестве дрифта $m(x)$ можно использовать не только функцию от местоположения, но также значения внешней переменной — **ковариаты**.
 
 Например, количество осадков можно связать с высотой точки $H(x)$ следующей моделью:
 
@@ -736,7 +734,7 @@ $$
 
 С статистической точки зрения это линейная регрессия, в которой остатки коррелированы (автокоррелированы).
 
-> В литературе данный метод называют также __регрессионным кригингом__ (_regression kriging_), а оценка дрифта — __пространственной регрессией__ (_spatial regression_).
+> В литературе данный метод называют также **регрессионным кригингом** (*regression kriging*), а оценка дрифта — **пространственной регрессией** (*spatial regression*).
 
 ## Универсальный кригинг
 
@@ -763,9 +761,9 @@ $$
 
 $$\sum_i \lambda_i f_i^k = f_0^k,~k = 0, 1, ..., K.$$
 
-Эти условия называются __условиями универсальности__. Отсюда идет название метода — _универсальный кригинг_
+Эти условия называются **условиями универсальности**. Отсюда идет название метода — *универсальный кригинг*
 
-> Условия универсальности гаранируют, что оценка $Z^*$ является __несмещенной__ для _любых_ значений $a_k$.
+> Условия универсальности гаранируют, что оценка $Z^*$ является **несмещенной** для *любых* значений $a_k$.
 
 ## Универсальный кригинг
 
@@ -775,7 +773,7 @@ $$
 \operatorname {Var}[Z^* - Z_0] = \sum_{i}\sum_{j} \lambda_i \lambda_j \sigma_{ij} - 2 \sum_{} \lambda_i \sigma_{i0} + \sigma_{00}
 $$
 
-Для этого, с учетом дополнительного условия  $\sum_i \lambda_i f_i^k = f_0^k$ применим метод множителей Лагранжа и построим вспомогательную функцию:
+Для этого, с учетом дополнительного условия $\sum_i \lambda_i f_i^k = f_0^k$ применим метод множителей Лагранжа и построим вспомогательную функцию:
 
 $$Q = \operatorname {Var}[Z^* - Z_0] + 2 \sum_{k=0}^K \mu_k \Bigg[ \sum_i \lambda_i f_i^k - f_0^k\Bigg],$$
 
@@ -805,7 +803,7 @@ $$
 \end{cases}
 $$
 
-Заменяя ковариацию на вариограмму, получаем __систему уравнений универсального кригинга__:
+Заменяя ковариацию на вариограмму, получаем **систему уравнений универсального кригинга**:
 
 $$
 \color{red}{\boxed{\color{blue}{\begin{cases}\sum_j \lambda_j \gamma_{ij} - \sum_k \mu_k f_i^k = \gamma_{i0},\color{gray}{~i = 1,...,N,}\\
@@ -826,5 +824,623 @@ $$
 $$
 \color{red}{\boxed{\color{blue}{\sigma^2_{UK} = E[Z^* - Z_0]^2 = \sum_{i}\lambda_i\gamma_{i0} - \sum_k \mu_k f_0^k}}}
 $$
+
+## Диаграмма рассеяния с лагом
+
+**Lagged scatterplot** — вариант диаграммы рассеяния, на котором показываются значения в точках, расстояние между которыми попадает в заданный интервал
+
+```{r, echo=FALSE, message=FALSE, warnin=FALSE, fig.height=4.5, dpi=300, fig.align='center'}
+options(scipen = 999)
+library(tidyverse)
+library(raster)
+library(gstat)
+library(stars)
+library(tmap)
+library(sf)
+
+cities = read_sf("../r-geo-course/data/italy.gpkg", 'cities')
+
+rainfall = read_table("../r-geo-course/data/Rainfall.dat") |> 
+  st_as_sf(coords = c('x', 'y'), 
+           crs = st_crs(cities),
+           remove = FALSE)
+
+hscat(rain_24~1, data = rainfall, 1000 * c(0, 10, 20, 50, 100), pch = 19)
+```
+
+## Вариограммное облако
+
+Квадрат разности значений как функция от расстояния между точками
+
+```{r, echo=FALSE, fig.height=5, dpi=300}
+varcl = variogram(rain_24~1, data=rainfall, cutoff = 150000, cloud=TRUE)
+
+ggplot(varcl) +
+  geom_point(aes(dist, gamma), alpha = 0.5, size = 2, color = 'steelblue') +
+  ylab('semivariance') +
+  theme_bw()
+```
+
+## Эмпирическая вариограмма
+
+Эмпирическая вариограмма рассчитывается путем разбиения вар. облака на интервалы расстояний — **лаги** — и подсчета среднего значения $\gamma$ в каждом лаге:
+
+```{r, echo=FALSE, fig.height=4.5, dpi=300}
+width = 10000
+intervals = width * 0:15
+
+vargr = variogram(rain_24~1, data=rainfall, cutoff = 150000, width = width)
+
+ggplot() +
+  geom_bin2d(varcl, mapping = aes(dist, gamma), binwidth = c(width, 3000)) +
+  geom_point(varcl, mapping = aes(dist, gamma), alpha = 0.5, size = 2, color = 'steelblue') +
+  geom_vline(xintercept = intervals, linewidth = 0.25) +
+  geom_vline(xintercept = 1e4 * 6:7, linewidth = 1, color = 'white') +
+  geom_label(aes(x = 30000, y = 2700, label = "лаг [60 000, 70 000)"), 
+             label.padding = unit(0.35, "lines"),
+             color = 'forestgreen', fill = 'white', size = 4.5, alpha = 0.8) + 
+  geom_line(vargr, mapping = aes(dist, gamma)) +
+  geom_point(vargr, mapping = aes(dist, gamma, size = np)) +
+  scale_fill_continuous(low = 'bisque', high = 'coral3') +
+  scale_size(range = c(1, 3)) +
+  coord_cartesian(ylim = c(0, 3000)) +
+  scale_x_continuous(expand = c(0, 0)) + 
+  scale_y_continuous(expand = c(0, 0)) +
+  theme_bw()
+```
+
+## Эмпирическая вариограмма
+
+$$\hat{\gamma} = \frac{1}{2N_h} \sum_{x_i - x_j \approx h} \big[z(x_i) - z(x_j)\big]^2$$
+
+```{r, echo=FALSE, fig.height=3, dpi=300}
+ggplot() +
+  geom_line(vargr, mapping = aes(dist, gamma)) +
+  geom_point(vargr, mapping = aes(dist, gamma, size = np)) +
+  scale_size(range = c(1, 5)) +
+  theme_bw()
+```
+
+Размер точки означает количество пар значений, которые попали в каждый лаг.
+
+## Эмпирическая вариограмма
+
+Поскольку вариограмма есть *дисперсия разности значений*, ее рост можно оценить также по увеличению размера «ящика» на диаграмме размаха $\sqrt\gamma$:
+
+```{r, echo=FALSE, fig.height=4.5, dpi=300}
+varcl = varcl %>% 
+  mutate(sqgamma = sqrt(gamma),
+         lag = cut(dist, breaks = intervals, labels = 0.001 * (intervals[-1] - 0.5*width)))
+
+ggplot(varcl) +
+  geom_boxplot(aes(lag, sqrt(gamma)), outlier.alpha = 0.1)
+```
+
+## Вариокарта
+
+**Вариокарта** (*variogram map, variomap*) представляет вариограмму как функцию приращений координат: $$\hat{\gamma} (\Delta x, \Delta y) = \frac{1}{2N_{\substack{\Delta x\\ \Delta y}}} \sum_{\substack{\Delta x_{ij} \approx \Delta x\\ \Delta y_{ij} \approx \Delta y}} \big[z(p_i) - z(p_j)\big]^2$$
+
+::: columns
+::: {.column width="50%"}
+```{r, echo=FALSE}
+varmp = variogram(rain_24~1, data=rainfall, cutoff = 150000, width = width, map = TRUE)[['map']]
+
+# plot(varmp)
+
+dims = unname(varmp@grid@cells.dim)
+offs = varmp@grid@cellcentre.offset
+
+m = varmp@data %>% pull(var1) %>% matrix(dims)
+dim(m) = c(dx = dims[1], dy = dims[2])
+
+varstars = st_as_stars(gamma = m)
+
+attr(varstars, "dimensions")[[1]]$offset = offs[1]
+attr(varstars, "dimensions")[[2]]$offset = -offs[2]
+
+attr(varstars, "dimensions")[[1]]$delta = width
+attr(varstars, "dimensions")[[2]]$delta = -width
+
+ggplot() +
+  geom_stars(data = varstars) +
+  scale_fill_continuous(type = "viridis") +
+  coord_equal() +
+  theme_bw() +
+  theme(axis.text = element_text(size=18),
+        legend.text =  element_text(size=14),
+        legend.title =  element_text(size=18),
+        axis.title = element_text(size=18,face="bold"))
+```
+:::
+
+::: {.column width="50%"}
+Вариокарта используется для выявления *пространственной анизотропии*. Профиль по линии из центра к краю вариокарты даст эмпирическую вариограмму
+:::
+:::
+
+## Эмпирическая и теоретическая вариограмма
+
+**В уравнениях кригинга нельзя использовать эмпирическую вариограмму.**
+
+-   Это связано с тем, что уравнения ординарного (обычного) кригинга выводятся из предположения о том, что вариограмма является условно положительно определенной функцией.
+
+-   Выполнение этого условия нельзя гарантировать для эмпирической кривой.
+
+-   Необходимо использовать теоретическую функцию — *модель вариограммы* — которая отвечает условной положительной определенности.
+
+-   Модель вариограммы выбирается исходя из формы эмпирической вариограммы.
+
+## Свойства вариограммы
+
+$$\gamma (\mathbf{h}) = \gamma(\mathbf{x}, \mathbf{x + h}) = \operatorname E\big[Z(x + h)-Z(x)\big]^2$$
+
+Исходя из определения $\gamma$, можно вывести ряд обязательных свойств модели:
+
+-   Вариограмма симметрична:
+
+    $$\gamma(\mathbf{h}) = \gamma(-\mathbf{h})$$
+
+-   Вариограмма связана с дисперсией:
+
+    $$\gamma(\infty) = \operatorname{Var}\big[ Z(\mathbf{x}) \big]$$
+
+-   Вариограмма связана с ковариацией:
+
+    $$\gamma(\mathbf{h}) = \operatorname{Var}\big[Z(\mathbf{x}) \big] - \operatorname C(\mathbf{h})$$
+
+## Приближение теоретической модели
+
+**Приближение** (*fitting*) модели вариограммы предполагает:
+
+1.  Выбор теоретической модели
+2.  Подбор параметров модели: эффект самородка (*nugget*), радиус корреляции ( $a$ или *range*) и плато (*sill*).
+
+```{r, echo=FALSE, fig.height=3, dpi=300}
+nugget = 15
+sill = 215
+lag = 1000
+a = 120000
+cutoff = 150000
+
+h0 = lag * 0:(a/lag)
+h1 = lag * (a/lag + 1):(cutoff/lag) 
+
+tab1 = tibble::tibble(
+  h = c(h0, h1),
+  gamma = c(nugget + (sill - nugget) * (3 * h0 / (2 * a) - 0.5 * (h0 / a)^3), rep(sill, length(h1))),
+  fit = 'manual'
+)
+
+vargr = variogram(rain_24~1, data=rainfall, cutoff = 150000, width = width)
+
+ggplot() +
+  geom_vline(xintercept = a, color = 'orangered') +
+  annotate("text", x = a + 1.5 * width, y = 0.5 * sill, label = paste("a =", a), color = 'orangered') + 
+  geom_hline(yintercept = sill, color = 'orangered') +
+  annotate("text", x = 0.5 * a, y = sill * 1.05, label = paste("sill =", sill), color = 'orangered') + 
+  geom_line(vargr, mapping = aes(dist, gamma)) +
+  geom_point(vargr, mapping = aes(dist, gamma), size = 2) +
+  scale_size(range = c(1, 5)) +
+  geom_line(tab1, mapping = aes(h, gamma), linewidth = 1, color = 'steelblue') +
+  geom_point(data.frame(h = 0, gamma = nugget), mapping = aes(h, gamma), size = 3, color = 'orangered') +
+  annotate("text", x = 1.5 * width, y = nugget, label = paste("nugget =", nugget), color = 'orangered') + 
+  xlab('lag') + ylab('gamma') +
+  ggtitle('Сферическая модель') +
+  theme_bw()
+```
+
+## Сферическая модель
+
+$$\gamma(h) = \begin{cases}
+  c_0 + c\Big[\frac{3h}{2a} - \frac{1}{2}\big(\frac{h}{a}\big)^3\Big], & h \leq a; \\
+  c_0 + c, & h > a.
+\end{cases}$$
+
+$$\gamma(a) = \operatorname{Var}[Z(p)] = c_0 + c$$
+
+```{r, echo=FALSE, fig.height=3, dpi=300, fig.align='center'}
+n = 60
+a = 40
+h = 0:n
+
+tab = tibble::tibble(
+  h = 0:60,
+  gamma = c(3 * (0:(a-1)) / (2 * a) - 0.5 * (0:(a-1) / a)^3, rep(1, n-a+1))
+)
+
+ggplot() +
+  geom_line(tab, mapping = aes(h, gamma), linewidth = 1, color = 'steelblue') +
+  geom_vline(xintercept = a, color = 'orangered') +
+  annotate("text", x = a + 3, y = 0.5625, label = paste("a =", a), color = 'orangered') + 
+  theme_bw()
+```
+
+<!-- - Данная модель достигает плато в точке $h = a$. -->
+
+## Экспоненциальная модель
+
+$$\gamma(h) = \begin{cases}
+  0, & h = 0; \\
+  c_0 + (c-c_0)\Big[1 - \exp\big(\frac{-3h}{a}\big)\Big], & h \neq 0.
+\end{cases}$$
+
+$$\gamma(a) = \operatorname{Var}[Z(p)] = c_0 + c$$
+
+```{r, echo=FALSE, fig.height=3, dpi=300, fig.align='center'}
+tab = tibble::tibble(
+  h = h,
+  gamma = 1 - exp(-3*h/a)
+)
+
+pl = ggplot() +
+  geom_line(tab, mapping = aes(h, gamma), linewidth = 1, color = 'steelblue') +
+  geom_vline(xintercept = a, color = 'orangered') +
+  annotate("text", x = a + 3, y = 0.5625, label = paste("a =", a), color = 'orangered') + 
+  theme_bw()
+
+(pl)
+```
+
+## Экспоненциальная модель
+
+```{r, echo=FALSE, fig.height=4, dpi=300, fig.align='center'}
+(pl)
+```
+
+-   Данная модель достигает плато асимптотически.
+-   В точке $h = a$ достигается $95\%$ уровня плато.
+
+## Гауссова модель
+
+$$\gamma(h) = c_0 + c\Bigg[1 - \exp\bigg(\frac{-3h^2}{a^2}\bigg)\Bigg]$$
+
+```{r, echo=FALSE, fig.height=4, dpi=300, fig.align='center'}
+tab = tibble::tibble(
+  h = h,
+  gamma = 1 - exp(-3*h^2/a^2)
+)
+
+pl = ggplot() +
+  geom_line(tab, mapping = aes(h, gamma), linewidth = 1, color = 'steelblue') +
+  geom_vline(xintercept = a, color = 'orangered') +
+  annotate("text", x = a + 3, y = 0.5625, label = paste("a =", a), color = 'orangered') + 
+  theme_bw()
+
+(pl)
+```
+
+## Гауссова модель
+
+```{r, echo=FALSE, fig.height=3, dpi=300, fig.align='center'}
+(pl)
+```
+
+-   Данная модель достигает плато асимптотически.
+-   В точке $h = a$ достигается $95\%$ уровня плато.
+-   Отличительной чертой этой модели является ее гладкость: параболическое поведение вблизи нуля и асимптотическое приближение к плато.
+
+## Степенная модель
+
+$$\gamma(h) = \begin{cases}
+  0, & h = 0; \\
+  c h^\alpha, & h \neq 0.
+\end{cases}$$
+
+```{r, echo=FALSE, fig.height=4, dpi=300, fig.align='center'}
+tab = tibble::tibble(
+  h = h,
+  gamma = h^1.5
+)
+
+pl = ggplot() +
+  geom_line(tab, mapping = aes(h, gamma), linewidth = 1, color = 'steelblue') +
+  theme_bw()
+
+(pl)
+```
+
+## Степенная модель
+
+```{r, echo=FALSE, fig.height=3, dpi=300, fig.align='center'}
+(pl)
+```
+
+-   Автокорреляция присутствует на всех расстояниях: $a \rightarrow \infty$
+-   Предположение о стационарности второго порядка не выполняется
+-   Как правило, это означает наличие тренда в данных
+
+## Эффект самородка (модель наггет)
+
+$$\gamma(h) = \begin{cases}
+  0, & h = 0; \\
+  c_0, & h \neq 0.
+\end{cases}, ~ c_0 = C(0)$$
+
+```{r sam, echo=FALSE, fig.height=4, fig.align='center', dpi=300}
+tab = tibble::tibble(
+  gamma = rep(1, n+1),
+  h = h
+)
+
+ggplot() +
+  geom_line(tab, mapping = aes(h, gamma), linewidth = 1, color = 'steelblue') +
+  geom_point(data = data.frame(x = 0, y = 1), mapping = aes(x, y), shape=21,
+             colour = 'steelblue', fill = 'white', size = 3, stroke = 1.5) +
+  annotate('point', x = 0, y = 0, color = 'steelblue', size = 4) +
+  theme_bw()
+```
+
+## Эффект самородка (модель наггет)
+
+```{r, echo=FALSE, fig.height=2, dpi=300, fig.align='center'}
+ggplot() +
+  geom_line(tab, mapping = aes(h, gamma), linewidth = 1, color = 'steelblue') +
+  geom_point(data = data.frame(x = 0, y = 1), mapping = aes(x, y), shape=21,
+             colour = 'steelblue', fill = 'white', size = 2, stroke = 1.5) +
+  annotate('point', x = 0, y = 0, color = 'steelblue', size = 3) +
+  theme_bw()
+```
+
+-   Наличие у данных вариограммы типа наггет означает отсутствие пространственной корреляции.
+-   Возможные причины:
+    -   Абсолютно случайное распределение
+    -   Мелкомасштабная вариабельность (меньше, чем расстояние между измерениями)
+    -   Ошибки в измерениях
+    -   Ошибки в координатах точек
+
+## Автоматическое приближение
+
+Дана вариограмма семейства $\gamma (h; \mathbf{b})$, где $\mathbf{b} = (b_1, ..., b_k)$ — вектор из $k$ параметров модели. Параметры $\mathbf{b}$ подбираются таким образом, чтобы минимизировать следующий функционал:
+
+$$Q(\mathbf{b}) = \sum_{l=1}^{L} w_l \big[\hat{\gamma}(h_l) - \gamma (h; \mathbf{b})\big]^2,$$
+
+где $\big\{\hat{\gamma} (h_l): l = 1,...,L\big\}$ — значения эмпирической вариограммы для $L$ лагов, вычисленные по $N(h_l)$ векторам.
+
+Веса $w_l$ обычно выбираются исходя из отношения $w_l = N(h_l) / |h_l|$, чтобы придать большее значение коротким расстояниям и лагам с хорошей оценкой.
+
+## Автоматическое приближение
+
+$$Q(\mathbf{b}) = \sum_{l=1}^{L} w_l \big[\hat{\gamma}(h_l) - \gamma (h; \mathbf{b})\big]^2$$ Минимизация функционала осуществляется итеративно:
+
+1.  Процесс начинается с некоторого предположения $\mathbf{b}^{(0)}$
+2.  На шаге $s$ функция $Q$ аппроксимируется в виде квадратичной формы $Q(\mathbf{b}^{(s)}) \approx \sum_{i=1}^k \sum_{j=1}^k \delta_{ij} b_i b_j$ путем разложения в ряд Тейлора вокруг точки $\mathbf{b}^{(s)}$.
+3.  Новая точка минимума $\mathbf{b}^{(s+1)}$ находится как минимум квадратичной формы (*этот минимум один*).
+
+Шаги 2-3 повторяются до тех пор, пока значение $Q$ не станет меньше заданного порога.
+
+## Автоматическое приближение
+
+Сравним результат ручного и автоматического приближения вариограммы:
+
+```{r, echo=FALSE, fig.height=4.5, dpi=300}
+varmd = fit.variogram(vargr, model = vgm(psill = 215, model = 'Sph', range = 120000, nugget = 15))
+
+h0 = lag * 0:(varmd[2, 'range']/lag)
+h1 = lag * (varmd[2, 'range']/lag + 1):(cutoff/lag) 
+
+tab2 = tibble::tibble(
+  h = c(h0, h1),
+  gamma = c(varmd[1, 'psill'] + (varmd[2, 'psill'] * (3 * h0 / (2 * varmd[2, 'range']) - 0.5 * (h0 / varmd[2, 'range'])^3)), rep(varmd[1, 'psill'] + varmd[2, 'psill'], length(h1))),
+  fit = 'automatic'
+)
+
+tab = bind_rows(tab1, tab2)
+
+ggplot() +
+  geom_line(vargr, mapping = aes(dist, gamma)) +
+  geom_point(vargr, mapping = aes(dist, gamma), size = 2) +
+  scale_size(range = c(1, 5)) +
+  geom_line(tab, mapping = aes(h, gamma, color = fit), linewidth = 1) +
+  xlab('lag') + ylab('gamma') +
+  ggtitle('Сферическая модель') +
+  theme_bw()
+```
+
+## Обычный кригинг
+
+Рассмотрим данные по температуре:
+
+```{r, echo=FALSE, warning=FALSE, dpi = 300, fig.height = 4.5}
+box = st_bbox(rainfall)
+envelope = box[c(1,3,2,4)]
+
+px_grid = st_as_stars(box, dx = 2000, dy = 2000)
+
+ggplot() + 
+  geom_sf(data = rainfall, color = 'red') +
+  geom_sf(data = st_as_sf(px_grid), size = 0.5, fill = NA)
+```
+
+## Обычный кригинг
+
+Визуализируем найденную вариограмму:
+
+```{r, echo=FALSE, warning=FALSE, dpi = 300, fig.height = 4.5}
+plot(vargr, model = varmd)
+```
+
+## Обычный кригинг
+
+Визуализируем найденную вариокарту:
+
+```{r, echo=FALSE, warning=FALSE, dpi = 300, fig.height = 4.5}
+plot(varmp)
+```
+
+## Обычный кригинг
+
+Проинтерполируем, используя приближенную модель вариограммы:
+
+```{r}
+(px_grid = krige(rain_24~1, rainfall, px_grid, model = varmd))
+```
+
+## Оценка кригинга
+
+```{r, echo=FALSE, warning=FALSE, dpi = 300, fig.height=5}
+rain_colors = colorRampPalette(c("white", "dodgerblue", "dodgerblue4"))
+rain_levels = seq(-10,80,by=10)
+rain_ncolors = length(rain_levels)-1
+
+err_colors = colorRampPalette(c("white", "coral", "violetred"))
+err_levels = seq(0, 200, by = 20)
+err_ncolors = length(err_levels) - 1
+
+cont = st_contour(px_grid['var1.pred'], breaks = rain_levels, contour_lines = TRUE)
+conterr = st_contour(px_grid['var1.var'], breaks = err_levels, contour_lines = TRUE)
+
+ggplot() +
+  geom_stars(data = cut(px_grid['var1.pred'], breaks = rain_levels)) +
+  scale_fill_manual(name = 'мм',
+                    values = rain_colors(rain_ncolors),
+                    labels = paste(rain_levels[-rain_ncolors-1], '-', rain_levels[-1]),
+                    drop = FALSE) +
+  # coord_sf(crs = st_crs(rainfall)) +
+  geom_sf(data = cont, color = 'black', size = 0.2) +
+  geom_sf(data = rainfall, color = 'black', size = 0.3) +
+  theme_bw()
+```
+
+## Дисперсия кригинга
+
+```{r, echo=FALSE, warning=FALSE, dpi = 300, fig.height=5}
+ggplot() +
+  geom_stars(data = cut(px_grid['var1.var'], breaks = err_levels)) +
+  scale_fill_manual(name = 'мм',
+                    values = err_colors(err_ncolors),
+                    labels = paste(err_levels[-err_ncolors-1], '-', err_levels[-1]),
+                    drop = FALSE) +
+  # coord_sf(crs = st_crs(rainfall)) +
+  geom_sf(data = conterr, color = 'black', size = 0.2) +
+  geom_sf(data = rainfall, color = 'black', size = 0.3) +
+  theme_bw()
+```
+
+Дисперсия кригинга высока там, где мало данных
+
+## Среднеквадратическое отклонение кригинга
+
+```{r, echo=FALSE, warning=FALSE, dpi = 300, fig.height=5}
+ggplot() +
+  geom_stars(data = cut(sqrt(px_grid['var1.var']), breaks = sqrt(err_levels))) +
+  scale_fill_manual(name = 'мм',
+                    values = err_colors(err_ncolors),
+                    labels = paste(round(sqrt(err_levels[-err_ncolors-1]),1), '-', round(sqrt(err_levels[-1]),1)),
+                    drop = FALSE) +
+  # coord_sf(crs = st_crs(rainfall)) +
+  geom_sf(data = conterr, color = 'black', size = 0.2) +
+  geom_sf(data = rainfall, color = 'black', size = 0.3) +
+  theme_bw()
+```
+
+Для удобства интерпретации можно взять корень из дисперсии
+
+## Кросс-валидация
+
+Значение переменной $Z(x)$ оценивается в каждой точке $x_i$ по данным в соседних точках $Z(x_j), ~ j \neq i$ как если бы $Z(x_i)$ было неизвестно.
+
+В каждой точке вычисляется оценка кригинга $Z_{-i}^*$ и соответствующая дисперсия кригинга $\sigma_{Ki}^2$. Поскольку значение $Z_i = Z(x_i)$ известно, мы можем вычислить:
+
+-   **Ошибку кригинга** $E_i = Z_{-i}^* - Z_i$
+-   **Стандартизированную ошибку** $e_i = E_i / \sigma_{Ki}$
+
+Если $\gamma(h)$ — теоретическая вариограмма, то $E_i = Z_{-i}^* - Z_i$ — случайная величина с м.о. = $0$ и дисперсией $\sigma_{Ki}^2$, а $e_i$ имеет м.о. = $0$ и дисперсию, равную $1$.
+
+## Кросс-валидация
+
+-   **Ошибка кригинга** $E_i = Z_{-i}^* - Z_i$
+-   **Стандартизированная ошибка** $e_i = E_i / \sigma_{Ki}$
+
+Стандартно анализируются следующие карты и графики:
+
+-   *Карта стандартизированных ошибок* $e_i$. Стационарность ошибок, отсутствие эффекта пропорциональности.
+
+-   *Гистограмма стандартизированных ошибок* $e_i$. Нормальность распределения, отсутствие аномалий.
+
+-   *Диаграмма рассеяния* $(Z_{-i}^*, Z_i)$. Сглаживающий эффект, соответствие оценки и реального значения.
+
+-   *Диаграмма рассеяния* $(Z_{-i}^*, e_i)$. Независимость (ортогональность) оценки и ошибки.
+
+## Кросс-валидация
+
+Для выполнения кросс-валидации воспользуемся функцией `krige.cv`:
+
+```{r, warning=FALSE, dpi = 300, fig.height=2}
+cvl = krige.cv(rain_24~1, rainfall, varmd) %>% 
+  st_as_sf() %>% 
+  mutate(sterr = residual / sqrt(var1.var))
+
+head(cvl %>% st_set_geometry(NULL), 10)
+```
+
+## Кросс-валидация
+
+Cтандартизированные ошибки в стационарном случае должны быть распределены нормально:
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, dpi = 300, fig.height=4.5}
+ggplot(cvl, aes(x = sterr)) +
+  geom_histogram(aes(y = after_stat(density)), fill = 'grey', color = 'black', linewidth = 0.1) +
+  geom_density(fill = 'olivedrab', alpha = 0.5) +
+  theme_bw()
+```
+
+## Кросс-валидация
+
+Ошибки должны быть независимы от значений:
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, dpi = 300, fig.height=4.5}
+ggplot(cvl, aes(x = var1.pred, sterr)) +
+  geom_point(alpha = 0.8) +
+  geom_smooth(method = 'lm') +
+  theme_bw()
+```
+
+## Кросс-валидация
+
+Облако рассеяния оценки относительно истинных значений должно быть компактным:
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, dpi = 300, fig.height=4.5}
+ggplot(cvl, aes(x = var1.pred, observed)) +
+  geom_point(alpha = 0.8) +
+  geom_smooth(method = 'lm') +
+  theme_bw()
+```
+
+## Кросс-валидация
+
+Пространственная картина стандартизированных ошибок должна быть гомогенной:
+
+```{r, echo=FALSE, warning=FALSE, dpi = 300, fig.height=3, fig.width=7}
+library(akima)
+
+coords = st_coordinates(rainfall)
+coords_grid = st_coordinates(px_grid)
+
+px_grid = px_grid %>% 
+  mutate(sterr = interpp(x = coords[,1],
+                         y = coords[,2],
+                         z = cvl$sterr, 
+                         xo = coords_grid[,1],
+                         yo = coords_grid[,2],
+                         linear = FALSE,
+                         extrap = TRUE)$z)
+
+sterr_levels = seq(-40,40,5)
+sterr_ncolors = length(sterr_levels)-1
+sterr_colors = colorRampPalette(c('blue', 'white', 'red'))
+
+sterrcont = st_contour(px_grid['sterr'], breaks = sterr_levels, contour_lines = TRUE)
+
+ggplot() +
+  geom_stars(data = cut(px_grid['sterr'], breaks = sterr_levels)) +
+  scale_fill_manual(name = 'мм',
+                    values = sterr_colors(sterr_ncolors),
+                    labels = paste(sterr_levels[-sterr_ncolors-1], '-', sterr_levels[-1]),
+                    drop = FALSE) +
+  # coord_sf(crs = st_crs(rainfall)) +
+  geom_sf(data = sterrcont, color = 'black', size = 0.2) +
+  geom_sf(data = rainfall, color = 'black', size = 0.3) +
+  theme_bw()
+```
 
 ## Библиография

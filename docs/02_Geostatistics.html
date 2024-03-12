@@ -338,7 +338,7 @@
 </div>
 </div>
 
-  <p class="date">5 марта 2024 г.</p>
+  <p class="date">12 марта 2024 г.</p>
 </section>
 <section id="базовые-компоненты" class="slide level2">
 <h2>Базовые компоненты</h2>
@@ -1040,6 +1040,297 @@ Z(x) = a_0 + a_1 H(x) + Y(x)
 \color{red}{\boxed{\color{blue}{\sigma^2_{UK} = E[Z^* - Z_0]^2 = \sum_{i}\lambda_i\gamma_{i0} - \sum_k \mu_k f_0^k}}}
 \]</span></p>
 </section>
+<section id="диаграмма-рассеяния-с-лагом" class="slide level2">
+<h2>Диаграмма рассеяния с лагом</h2>
+<p><strong>Lagged scatterplot</strong> — вариант диаграммы рассеяния, на котором показываются значения в точках, расстояние между которыми попадает в заданный интервал</p>
+
+<img data-src="02_Geostatistics_files/figure-revealjs/unnamed-chunk-1-1.png" class="quarto-figure quarto-figure-center r-stretch" width="3000"></section>
+<section id="вариограммное-облако" class="slide level2">
+<h2>Вариограммное облако</h2>
+<p>Квадрат разности значений как функция от расстояния между точками</p>
+
+<img data-src="02_Geostatistics_files/figure-revealjs/unnamed-chunk-2-1.png" width="3000" class="r-stretch"></section>
+<section id="эмпирическая-вариограмма" class="slide level2">
+<h2>Эмпирическая вариограмма</h2>
+<p>Эмпирическая вариограмма рассчитывается путем разбиения вар. облака на интервалы расстояний — <strong>лаги</strong> — и подсчета среднего значения <span class="math inline">\(\gamma\)</span> в каждом лаге:</p>
+
+<img data-src="02_Geostatistics_files/figure-revealjs/unnamed-chunk-3-1.png" width="3000" class="r-stretch"></section>
+<section id="эмпирическая-вариограмма-1" class="slide level2">
+<h2>Эмпирическая вариограмма</h2>
+<p><span class="math display">\[\hat{\gamma} = \frac{1}{2N_h} \sum_{x_i - x_j \approx h} \big[z(x_i) - z(x_j)\big]^2\]</span></p>
+
+<img data-src="02_Geostatistics_files/figure-revealjs/unnamed-chunk-4-1.png" width="3000" class="r-stretch"><p>Размер точки означает количество пар значений, которые попали в каждый лаг.</p>
+</section>
+<section id="эмпирическая-вариограмма-2" class="slide level2">
+<h2>Эмпирическая вариограмма</h2>
+<p>Поскольку вариограмма есть <em>дисперсия разности значений</em>, ее рост можно оценить также по увеличению размера «ящика» на диаграмме размаха <span class="math inline">\(\sqrt\gamma\)</span>:</p>
+
+<img data-src="02_Geostatistics_files/figure-revealjs/unnamed-chunk-5-1.png" width="3000" class="r-stretch"></section>
+<section id="вариокарта" class="slide level2">
+<h2>Вариокарта</h2>
+<p><strong>Вариокарта</strong> (<em>variogram map, variomap</em>) представляет вариограмму как функцию приращений координат: <span class="math display">\[\hat{\gamma} (\Delta x, \Delta y) = \frac{1}{2N_{\substack{\Delta x\\ \Delta y}}} \sum_{\substack{\Delta x_{ij} \approx \Delta x\\ \Delta y_{ij} \approx \Delta y}} \big[z(p_i) - z(p_j)\big]^2\]</span></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="02_Geostatistics_files/figure-revealjs/unnamed-chunk-6-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<p>Вариокарта используется для выявления <em>пространственной анизотропии</em>. Профиль по линии из центра к краю вариокарты даст эмпирическую вариограмму</p>
+</div>
+</div>
+</section>
+<section id="эмпирическая-и-теоретическая-вариограмма" class="slide level2">
+<h2>Эмпирическая и теоретическая вариограмма</h2>
+<p><strong>В уравнениях кригинга нельзя использовать эмпирическую вариограмму.</strong></p>
+<ul>
+<li><p>Это связано с тем, что уравнения ординарного (обычного) кригинга выводятся из предположения о том, что вариограмма является условно положительно определенной функцией.</p></li>
+<li><p>Выполнение этого условия нельзя гарантировать для эмпирической кривой.</p></li>
+<li><p>Необходимо использовать теоретическую функцию — <em>модель вариограммы</em> — которая отвечает условной положительной определенности.</p></li>
+<li><p>Модель вариограммы выбирается исходя из формы эмпирической вариограммы.</p></li>
+</ul>
+</section>
+<section id="свойства-вариограммы" class="slide level2">
+<h2>Свойства вариограммы</h2>
+<p><span class="math display">\[\gamma (\mathbf{h}) = \gamma(\mathbf{x}, \mathbf{x + h}) = \operatorname E\big[Z(x + h)-Z(x)\big]^2\]</span></p>
+<p>Исходя из определения <span class="math inline">\(\gamma\)</span>, можно вывести ряд обязательных свойств модели:</p>
+<ul>
+<li><p>Вариограмма симметрична:</p>
+<p><span class="math display">\[\gamma(\mathbf{h}) = \gamma(-\mathbf{h})\]</span></p></li>
+<li><p>Вариограмма связана с дисперсией:</p>
+<p><span class="math display">\[\gamma(\infty) = \operatorname{Var}\big[ Z(\mathbf{x}) \big]\]</span></p></li>
+<li><p>Вариограмма связана с ковариацией:</p>
+<p><span class="math display">\[\gamma(\mathbf{h}) = \operatorname{Var}\big[Z(\mathbf{x}) \big] - \operatorname C(\mathbf{h})\]</span></p></li>
+</ul>
+</section>
+<section id="приближение-теоретической-модели" class="slide level2">
+<h2>Приближение теоретической модели</h2>
+<p><strong>Приближение</strong> (<em>fitting</em>) модели вариограммы предполагает:</p>
+<ol type="1">
+<li>Выбор теоретической модели</li>
+<li>Подбор параметров модели: эффект самородка (<em>nugget</em>), радиус корреляции ( <span class="math inline">\(a\)</span> или <em>range</em>) и плато (<em>sill</em>).</li>
+</ol>
+
+<img data-src="02_Geostatistics_files/figure-revealjs/unnamed-chunk-7-1.png" width="3000" class="r-stretch"></section>
+<section id="сферическая-модель" class="slide level2">
+<h2>Сферическая модель</h2>
+<p><span class="math display">\[\gamma(h) = \begin{cases}
+  c_0 + c\Big[\frac{3h}{2a} - \frac{1}{2}\big(\frac{h}{a}\big)^3\Big], &amp; h \leq a; \\
+  c_0 + c, &amp; h &gt; a.
+\end{cases}\]</span></p>
+<p><span class="math display">\[\gamma(a) = \operatorname{Var}[Z(p)] = c_0 + c\]</span></p>
+
+<!-- - Данная модель достигает плато в точке $h = a$. -->
+<img data-src="02_Geostatistics_files/figure-revealjs/unnamed-chunk-8-1.png" class="quarto-figure quarto-figure-center r-stretch" width="3000"></section>
+<section id="экспоненциальная-модель" class="slide level2">
+<h2>Экспоненциальная модель</h2>
+<p><span class="math display">\[\gamma(h) = \begin{cases}
+  0, &amp; h = 0; \\
+  c_0 + (c-c_0)\Big[1 - \exp\big(\frac{-3h}{a}\big)\Big], &amp; h \neq 0.
+\end{cases}\]</span></p>
+<p><span class="math display">\[\gamma(a) = \operatorname{Var}[Z(p)] = c_0 + c\]</span></p>
+
+<img data-src="02_Geostatistics_files/figure-revealjs/unnamed-chunk-9-1.png" class="quarto-figure quarto-figure-center r-stretch" width="3000"></section>
+<section id="экспоненциальная-модель-1" class="slide level2">
+<h2>Экспоненциальная модель</h2>
+
+<img data-src="02_Geostatistics_files/figure-revealjs/unnamed-chunk-10-1.png" class="quarto-figure quarto-figure-center r-stretch" width="3000"><ul>
+<li>Данная модель достигает плато асимптотически.</li>
+<li>В точке <span class="math inline">\(h = a\)</span> достигается <span class="math inline">\(95\%\)</span> уровня плато.</li>
+</ul>
+</section>
+<section id="гауссова-модель" class="slide level2">
+<h2>Гауссова модель</h2>
+<p><span class="math display">\[\gamma(h) = c_0 + c\Bigg[1 - \exp\bigg(\frac{-3h^2}{a^2}\bigg)\Bigg]\]</span></p>
+
+<img data-src="02_Geostatistics_files/figure-revealjs/unnamed-chunk-11-1.png" class="quarto-figure quarto-figure-center r-stretch" width="3000"></section>
+<section id="гауссова-модель-1" class="slide level2">
+<h2>Гауссова модель</h2>
+
+<img data-src="02_Geostatistics_files/figure-revealjs/unnamed-chunk-12-1.png" class="quarto-figure quarto-figure-center r-stretch" width="3000"><ul>
+<li>Данная модель достигает плато асимптотически.</li>
+<li>В точке <span class="math inline">\(h = a\)</span> достигается <span class="math inline">\(95\%\)</span> уровня плато.</li>
+<li>Отличительной чертой этой модели является ее гладкость: параболическое поведение вблизи нуля и асимптотическое приближение к плато.</li>
+</ul>
+</section>
+<section id="степенная-модель" class="slide level2">
+<h2>Степенная модель</h2>
+<p><span class="math display">\[\gamma(h) = \begin{cases}
+  0, &amp; h = 0; \\
+  c h^\alpha, &amp; h \neq 0.
+\end{cases}\]</span></p>
+
+<img data-src="02_Geostatistics_files/figure-revealjs/unnamed-chunk-13-1.png" class="quarto-figure quarto-figure-center r-stretch" width="3000"></section>
+<section id="степенная-модель-1" class="slide level2">
+<h2>Степенная модель</h2>
+
+<img data-src="02_Geostatistics_files/figure-revealjs/unnamed-chunk-14-1.png" class="quarto-figure quarto-figure-center r-stretch" width="3000"><ul>
+<li>Автокорреляция присутствует на всех расстояниях: <span class="math inline">\(a \rightarrow \infty\)</span></li>
+<li>Предположение о стационарности второго порядка не выполняется</li>
+<li>Как правило, это означает наличие тренда в данных</li>
+</ul>
+</section>
+<section id="эффект-самородка-модель-наггет" class="slide level2">
+<h2>Эффект самородка (модель наггет)</h2>
+<p><span class="math display">\[\gamma(h) = \begin{cases}
+  0, &amp; h = 0; \\
+  c_0, &amp; h \neq 0.
+\end{cases}, ~ c_0 = C(0)\]</span></p>
+
+<img data-src="02_Geostatistics_files/figure-revealjs/sam-1.png" class="quarto-figure quarto-figure-center r-stretch" width="3000"></section>
+<section id="эффект-самородка-модель-наггет-1" class="slide level2">
+<h2>Эффект самородка (модель наггет)</h2>
+
+<img data-src="02_Geostatistics_files/figure-revealjs/unnamed-chunk-15-1.png" class="quarto-figure quarto-figure-center r-stretch" width="3000"><ul>
+<li>Наличие у данных вариограммы типа наггет означает отсутствие пространственной корреляции.</li>
+<li>Возможные причины:
+<ul>
+<li>Абсолютно случайное распределение</li>
+<li>Мелкомасштабная вариабельность (меньше, чем расстояние между измерениями)</li>
+<li>Ошибки в измерениях</li>
+<li>Ошибки в координатах точек</li>
+</ul></li>
+</ul>
+</section>
+<section id="автоматическое-приближение" class="slide level2">
+<h2>Автоматическое приближение</h2>
+<p>Дана вариограмма семейства <span class="math inline">\(\gamma (h; \mathbf{b})\)</span>, где <span class="math inline">\(\mathbf{b} = (b_1, ..., b_k)\)</span> — вектор из <span class="math inline">\(k\)</span> параметров модели. Параметры <span class="math inline">\(\mathbf{b}\)</span> подбираются таким образом, чтобы минимизировать следующий функционал:</p>
+<p><span class="math display">\[Q(\mathbf{b}) = \sum_{l=1}^{L} w_l \big[\hat{\gamma}(h_l) - \gamma (h; \mathbf{b})\big]^2,\]</span></p>
+<p>где <span class="math inline">\(\big\{\hat{\gamma} (h_l): l = 1,...,L\big\}\)</span> — значения эмпирической вариограммы для <span class="math inline">\(L\)</span> лагов, вычисленные по <span class="math inline">\(N(h_l)\)</span> векторам.</p>
+<p>Веса <span class="math inline">\(w_l\)</span> обычно выбираются исходя из отношения <span class="math inline">\(w_l = N(h_l) / |h_l|\)</span>, чтобы придать большее значение коротким расстояниям и лагам с хорошей оценкой.</p>
+</section>
+<section id="автоматическое-приближение-1" class="slide level2">
+<h2>Автоматическое приближение</h2>
+<p><span class="math display">\[Q(\mathbf{b}) = \sum_{l=1}^{L} w_l \big[\hat{\gamma}(h_l) - \gamma (h; \mathbf{b})\big]^2\]</span> Минимизация функционала осуществляется итеративно:</p>
+<ol type="1">
+<li>Процесс начинается с некоторого предположения <span class="math inline">\(\mathbf{b}^{(0)}\)</span></li>
+<li>На шаге <span class="math inline">\(s\)</span> функция <span class="math inline">\(Q\)</span> аппроксимируется в виде квадратичной формы <span class="math inline">\(Q(\mathbf{b}^{(s)}) \approx \sum_{i=1}^k \sum_{j=1}^k \delta_{ij} b_i b_j\)</span> путем разложения в ряд Тейлора вокруг точки <span class="math inline">\(\mathbf{b}^{(s)}\)</span>.</li>
+<li>Новая точка минимума <span class="math inline">\(\mathbf{b}^{(s+1)}\)</span> находится как минимум квадратичной формы (<em>этот минимум один</em>).</li>
+</ol>
+<p>Шаги 2-3 повторяются до тех пор, пока значение <span class="math inline">\(Q\)</span> не станет меньше заданного порога.</p>
+</section>
+<section id="автоматическое-приближение-2" class="slide level2">
+<h2>Автоматическое приближение</h2>
+<p>Сравним результат ручного и автоматического приближения вариограммы:</p>
+
+<img data-src="02_Geostatistics_files/figure-revealjs/unnamed-chunk-16-1.png" width="3000" class="r-stretch"></section>
+<section id="обычный-кригинг-4" class="slide level2">
+<h2>Обычный кригинг</h2>
+<p>Рассмотрим данные по температуре:</p>
+
+<img data-src="02_Geostatistics_files/figure-revealjs/unnamed-chunk-17-1.png" width="3000" class="r-stretch"></section>
+<section id="обычный-кригинг-5" class="slide level2">
+<h2>Обычный кригинг</h2>
+<p>Визуализируем найденную вариограмму:</p>
+
+<img data-src="02_Geostatistics_files/figure-revealjs/unnamed-chunk-18-1.png" width="3000" class="r-stretch"></section>
+<section id="обычный-кригинг-6" class="slide level2">
+<h2>Обычный кригинг</h2>
+<p>Визуализируем найденную вариокарту:</p>
+
+<img data-src="02_Geostatistics_files/figure-revealjs/unnamed-chunk-19-1.png" width="3000" class="r-stretch"></section>
+<section id="обычный-кригинг-7" class="slide level2">
+<h2>Обычный кригинг</h2>
+<p>Проинтерполируем, используя приближенную модель вариограммы:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[using ordinary kriging]</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>stars object with 2 dimensions and 2 attributes
+attribute(s):
+                 Min.   1st Qu.   Median     Mean  3rd Qu.      Max.
+var1.pred  -0.4091735  7.707571 18.83325 21.50978 32.07393  67.26636
+var1.var   30.9929191 45.435980 52.71968 58.67491 65.48474 186.22488
+dimension(s):
+  from  to  offset delta                refsys x/y
+x    1 213  332239  2000 WGS 84 / UTM zone 32N [x]
+y    1  99 5121556 -2000 WGS 84 / UTM zone 32N [y]</code></pre>
+</div>
+</div>
+</section>
+<section id="оценка-кригинга" class="slide level2">
+<h2>Оценка кригинга</h2>
+
+<img data-src="02_Geostatistics_files/figure-revealjs/unnamed-chunk-21-1.png" width="3000" class="r-stretch"></section>
+<section id="дисперсия-кригинга" class="slide level2">
+<h2>Дисперсия кригинга</h2>
+
+<img data-src="02_Geostatistics_files/figure-revealjs/unnamed-chunk-22-1.png" width="3000" class="r-stretch"><p>Дисперсия кригинга высока там, где мало данных</p>
+</section>
+<section id="среднеквадратическое-отклонение-кригинга" class="slide level2">
+<h2>Среднеквадратическое отклонение кригинга</h2>
+
+<img data-src="02_Geostatistics_files/figure-revealjs/unnamed-chunk-23-1.png" width="3000" class="r-stretch"><p>Для удобства интерпретации можно взять корень из дисперсии</p>
+</section>
+<section id="кросс-валидация" class="slide level2">
+<h2>Кросс-валидация</h2>
+<p>Значение переменной <span class="math inline">\(Z(x)\)</span> оценивается в каждой точке <span class="math inline">\(x_i\)</span> по данным в соседних точках <span class="math inline">\(Z(x_j), ~ j \neq i\)</span> как если бы <span class="math inline">\(Z(x_i)\)</span> было неизвестно.</p>
+<p>В каждой точке вычисляется оценка кригинга <span class="math inline">\(Z_{-i}^*\)</span> и соответствующая дисперсия кригинга <span class="math inline">\(\sigma_{Ki}^2\)</span>. Поскольку значение <span class="math inline">\(Z_i = Z(x_i)\)</span> известно, мы можем вычислить:</p>
+<ul>
+<li><strong>Ошибку кригинга</strong> <span class="math inline">\(E_i = Z_{-i}^* - Z_i\)</span></li>
+<li><strong>Стандартизированную ошибку</strong> <span class="math inline">\(e_i = E_i / \sigma_{Ki}\)</span></li>
+</ul>
+<p>Если <span class="math inline">\(\gamma(h)\)</span> — теоретическая вариограмма, то <span class="math inline">\(E_i = Z_{-i}^* - Z_i\)</span> — случайная величина с м.о. = <span class="math inline">\(0\)</span> и дисперсией <span class="math inline">\(\sigma_{Ki}^2\)</span>, а <span class="math inline">\(e_i\)</span> имеет м.о. = <span class="math inline">\(0\)</span> и дисперсию, равную <span class="math inline">\(1\)</span>.</p>
+</section>
+<section id="кросс-валидация-1" class="slide level2">
+<h2>Кросс-валидация</h2>
+<ul>
+<li><strong>Ошибка кригинга</strong> <span class="math inline">\(E_i = Z_{-i}^* - Z_i\)</span></li>
+<li><strong>Стандартизированная ошибка</strong> <span class="math inline">\(e_i = E_i / \sigma_{Ki}\)</span></li>
+</ul>
+<p>Стандартно анализируются следующие карты и графики:</p>
+<ul>
+<li><p><em>Карта стандартизированных ошибок</em> <span class="math inline">\(e_i\)</span>. Стационарность ошибок, отсутствие эффекта пропорциональности.</p></li>
+<li><p><em>Гистограмма стандартизированных ошибок</em> <span class="math inline">\(e_i\)</span>. Нормальность распределения, отсутствие аномалий.</p></li>
+<li><p><em>Диаграмма рассеяния</em> <span class="math inline">\((Z_{-i}^*, Z_i)\)</span>. Сглаживающий эффект, соответствие оценки и реального значения.</p></li>
+<li><p><em>Диаграмма рассеяния</em> <span class="math inline">\((Z_{-i}^*, e_i)\)</span>. Независимость (ортогональность) оценки и ошибки.</p></li>
+</ul>
+</section>
+<section id="кросс-валидация-2" class="slide level2">
+<h2>Кросс-валидация</h2>
+<p>Для выполнения кросс-валидации воспользуемся функцией <code>krige.cv</code>:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>   var1.pred var1.var observed     residual      zscore fold       sterr
+1   5.743730 34.84033      6.0   0.25627005  0.04341669    1  0.04341669
+2  11.137129 60.24070     10.0  -1.13712865 -0.14650910    2 -0.14650910
+3   6.929502 47.22732      7.0   0.07049833  0.01025846    3  0.01025846
+4  23.252858 48.06354      1.0 -22.25285758 -3.20979954    4 -3.20979954
+5  15.655167 56.76258      1.0 -14.65516724 -1.94517957    5 -1.94517957
+6  11.794241 44.03055      1.0 -10.79424095 -1.62672846    6 -1.62672846
+7  11.325378 62.65261      0.1 -11.22537769 -1.41818009    7 -1.41818009
+8  28.421330 75.24988      0.2 -28.22133030 -3.25330355    8 -3.25330355
+9   2.340115 58.30350      1.0  -1.34011550 -0.17550719    9 -0.17550719
+10  3.489972 62.96551      0.2  -3.28997242 -0.41461106   10 -0.41461106</code></pre>
+</div>
+</div>
+</section>
+<section id="кросс-валидация-3" class="slide level2">
+<h2>Кросс-валидация</h2>
+<p>Cтандартизированные ошибки в стационарном случае должны быть распределены нормально:</p>
+
+<img data-src="02_Geostatistics_files/figure-revealjs/unnamed-chunk-25-1.png" width="3000" class="r-stretch"></section>
+<section id="кросс-валидация-4" class="slide level2">
+<h2>Кросс-валидация</h2>
+<p>Ошибки должны быть независимы от значений:</p>
+
+<img data-src="02_Geostatistics_files/figure-revealjs/unnamed-chunk-26-1.png" width="3000" class="r-stretch"></section>
+<section id="кросс-валидация-5" class="slide level2">
+<h2>Кросс-валидация</h2>
+<p>Облако рассеяния оценки относительно истинных значений должно быть компактным:</p>
+
+<img data-src="02_Geostatistics_files/figure-revealjs/unnamed-chunk-27-1.png" width="3000" class="r-stretch"></section>
+<section id="кросс-валидация-6" class="slide level2">
+<h2>Кросс-валидация</h2>
+<p>Пространственная картина стандартизированных ошибок должна быть гомогенной:</p>
+
+<img data-src="02_Geostatistics_files/figure-revealjs/unnamed-chunk-28-1.png" width="2100" class="r-stretch"></section>
 <section id="библиография" class="slide level2">
 <h2>Библиография</h2>
 
