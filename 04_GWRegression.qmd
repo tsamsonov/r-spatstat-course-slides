@@ -1,0 +1,211 @@
+---
+title: "Географически взвешенная регрессия"
+subtitle: "Пространственная статистика"
+date: today
+date-format: long
+author: "Самсонов Тимофей Евгеньевич"
+execute:
+  echo: false
+  freeze: true
+engine: knitr
+format:
+  revealjs: 
+    theme: [default, custom.scss]
+    margin: 0.2
+    width: 1280
+    height: 720
+    slide-number: true
+    footer: "Самсонов Т. Е. Пространственная статистика: курс лекций"
+    header-includes: <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/pt-sans" type="text/css"/>
+bibliography: references.yaml
+mainfont: PT Sans
+---
+
+## Особенности случайных процессов в пространстве
+
+-   **Пространственная зависимость** *(spatial dependence)* — наличие автокорреляции наблюдений. Выражается в невыполнении условия независимости остатков линейной регрессии. Устраняется посредством *пространственной регрессии (spatial regression)*.
+
+-   **Пространственная гетерогенность** *(spatial heterogeneity)* — нестационарность процессов, порождающих наблюдаемую переменную. Выражается в неэффективности постоянных коэффициентов линейной регрессии. Устраняется постредством *географически взвешенной регрессии (geographically weighted regression)*.
+
+## Географически взвешенная регрессия
+
+В стандартной модели линейной регрессии параметры модели предполагаются постоянными:
+
+$$\mathbf{y} = \mathbf{X} \boldsymbol\beta + \boldsymbol\epsilon,$$
+
+Для $i$-й локации решение выглядит следующим образом:
+
+$$y_i = \beta_0 + \beta_1 x_{1i} + \beta_2 x_{2i} + ... + \beta_m x_{mi} + \epsilon_i$$
+
+Коэффициенты находятся методом наименьших квадратов:
+
+$$\mathbf{\beta}' = (\mathbf{X}^T\mathbf{X})^{-1} \mathbf{X}^T \mathbf{Y}$$
+
+Такой подход, однако не учитывает того, что характер зависимости между переменными может меняться по пространству.
+
+## Географически взвешенная регрессия
+
+В географически взвешенной регрессионной модели веса определяются для каждой локации:
+
+$$y_i = \beta_{0i} + \beta_{1i} x_{1i} + \beta_{2i} x_{2i} + ... + \beta_{mi} x_{mi} + \epsilon_i$$
+
+В этом случае область оценки параметров $\mathbf{\beta}$ ограничивается некой окрестностью точки $i$. Математически это достигается применением весовых коэффициентов для данных независимых переменных:
+
+$$\mathbf{\beta}'(i) = (\mathbf{X}^T \color{blue}{\mathbf{W}(i)}\mathbf{X})^{-1} \mathbf{X}^T \color{blue}{\mathbf{W}(i)} \mathbf{Y},$$
+
+где $\mathbf{W}(i)$ есть матрица весов для точки $i$. Коэффициенты матрицы подбираются таким образом, что близкие локации получают более высокий вес.
+
+## Географически взвешенная регрессия
+
+Матрица $\mathbf{W}(i)$ имеет размер $n \times n$, где $n$ — число точек наблюдений:
+
+$$\mathbf{W}(i) = \begin{bmatrix}
+    w_{i1} & 0 & 0 & \dots  & 0 \\
+    0 & w_{i2} & 0 & \dots  & 0 \\
+    0 & 0 & w_{i3} & \dots  & 0 \\
+    \vdots & \vdots & \vdots & \ddots & \vdots \\
+    0 & 0 & 0 & \dots  & w_{in}
+\end{bmatrix},$$
+
+где $w_{ik}$ есть вес, который имеет точка $k$ при локальной оценке параметров в точке $i$.
+
+## Весовая функция
+
+Далёкие точки должны иметь меньший вес при вычислении коэффициентов. Например, для *гауссовой* весовой функции:
+
+$$
+w_{ij} = \operatorname{exp}\Big\{-\frac{1}{2} (d_{ij}/h)^2\Big\},
+$$
+
+::: columns
+::: {.column width="50%"}
+-   $w_{ij}$ --- вес, который будет иметь $j$-я точка при вычислении коэффициентов регрессии в $i$-й точке;
+
+-   $d_{ij}$ расстояние между ними;
+
+-   $h$ --- полоса пропускания
+:::
+
+::: {.column width="50%"}
+![](images/gwr_weights.svg){width="100%"}
+:::
+:::
+
+## Весовые функции
+
+В случае фиксированной весовой функции окрестность всегда имеет фиксированную полосу пропускания:
+
+![](images/nbfixed.svg){width="100%"}
+
+## Весовые функции
+
+В случае адаптивной весовой функции полоса пропускания определяется $N$ ближайшими точками. Например для $N = 5$:
+
+![](images/nbvariable.svg){width="100%"}
+
+## Полоса пропускания
+
+$$w_{ij} = \operatorname{exp}\Big\{-\frac{1}{2} (d_{ij}/h)^2\Big\},$$
+
+**Полоса пропускания** $h$ обладает следующими особенностями:
+
+-   малая полоса пропускания приводит к большой дисперсии локальных оценок;
+-   большая полоса пропускания приводит к смещенности оценки;
+-   при $h \rightarrow \infty$ локальная модель приближается к *глобальной регрессии*;
+-   при $h \rightarrow 0$ локальная модель «сворачивается» вокруг данных.
+
+## Практический анализ
+
+В качестве примера проанализируем каким образом цена жилья зависит от количества комнат на примере данных по стоимости недвижимости в Бостоне:
+
+```{r, cache = TRUE}
+library(sf)
+library(tidyverse)
+realest = read_delim(url('https://www.jefftk.com/apartment_prices/apts-1542637382.txt'),
+                 delim = ' ',
+                 col_names = c('price', 'rooms', 'id', 'lon', 'lat')) %>%
+  st_as_sf(coords = c('lon', 'lat'), crs = 4326) %>%
+  st_transform(3395) |> 
+  arrange(price)
+```
+
+```{r, fig.height=3, fig.width=4, dpi=300}
+test = dplyr::sample_n(realest, 1000)
+lims = range(realest$price) 
+brks = classInt::classIntervals(realest$price, 7, style = 'fisher')$brks
+
+ggplot(data = realest) +
+  geom_sf(aes(fill = price, size = rooms), shape = 21, alpha = 0.5) +
+  scale_fill_fermenter(direction = 1, breaks = brks, 
+                       limits = lims, palette = 'RdPu') +
+  scale_size_binned(range = c(0.25,3)) +
+  theme_void() + ggtitle("Бостон")
+```
+
+## Обычная регрессия
+
+```{r, fig.height=2.5, fig.width=6, dpi=300}
+
+model = lm(price ~ rooms, data = realest)
+
+ggplot(data = filter(realest, price < 25000), aes(rooms, price)) +
+  geom_point(alpha = 0.3) +
+  geom_smooth(method = 'lm')
+```
+
+Коэффициент детерминации $R^2 = 0.1483$. Регрессионная модель:
+
+$$
+\texttt{price} = 2319.2 +421.8~\texttt{rooms}
+$$
+
+## Модель ГВР
+
+В случае модели ГВР получается множество коэффициентов регрессии. По ним можно узнать статистику
+
+```{r}
+library(GWmodel)
+samples = realest |> as('Spatial')
+gwr_res = gwr.basic(price ~ rooms, data = samples, bw = 1000, kernel = 'gaussian')
+```
+
+```         
+              Min.   1st Qu. Median  3rd Qu. Max.
+   Intercept  198.56 1785.17 2054.43 2361.79 3485.2
+   rooms     -409.97  471.77  524.01  650.52 1299.1
+   
+   Kernel function: gaussian 
+   Fixed bandwidth: 1000 
+   Regression points: the same locations as observations are used.
+   Distance metric: Euclidean distance metric is used
+```
+
+Коэффициент детерминации $R^2 = 0.367$.
+
+## Коэффициенты ГВР
+
+::: columns
+::: {.column width="50%"}
+```{r, fig.height=3, fig.width=3, dpi=300}
+result = st_as_sf(gwr_res$SDF)
+ggplot(data = result) +
+  geom_sf(aes(fill = Intercept), shape = 21, alpha = 0.5) +
+  scale_fill_fermenter(direction = 1,  palette = 'Blues') +
+  theme_void() + ggtitle(expression(paste('price = ', beta[0]+beta[1]~rooms))) +
+  labs(fill = expression(beta[0]))
+```
+:::
+
+::: {.column width="50%"}
+```{r, fig.height=3, fig.width=3, dpi=300}
+result = st_as_sf(gwr_res$SDF)
+ggplot(data = result) +
+  geom_sf(aes(fill = rooms), shape = 21, alpha = 0.5) +
+  scale_fill_fermenter(direction = 1,  palette = 'Reds') +
+  theme_void() + ggtitle(expression(paste('price = ', beta[0]+beta[1]~rooms))) +
+  labs(fill = expression(beta[1]))
+```
+:::
+:::
+
+Пространственная картина распределения коэффициентов регрессии подтверждает гипотезу о гетерогенности.
